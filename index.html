@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ছায়ান্বিত ’২৬ | শহীদ বুলবুল সরকারি কলেজ, পাবনা</title>
+    <title>ছায়ান্বিত ’২৬ | শহীদ বুলবুল সরকারি কলেজ, পাবনা</title>
     
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -11,18 +11,28 @@
     <!-- Alpine.js for interactivity -->
     <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <link rel="preload" href="/baloo-da-2.woff2" as="font" type="font/woff2" crossorigin>
+
     <style>
         @font-face {
             font-family: 'Baloo Da 2';
             font-display: swap;
             font-style: normal;
             font-weight: 100 900;
+            /* The user needs to have these font files in the same directory */
             src: url('baloo-da-2.woff2') format('woff2'),
-              url('baloo-da-2.ttf') format('truetype');
-          }
+                 url('baloo-da-2.ttf') format('truetype');
+        }
         /* Applying the Bengali font */
-        body, h1, h2, h3, h4, h5, h6, p, a, span, div {
-            font-family: 'Baloo Da 2',  sans-serif;
+        body, h1, h2, h3, h4, h5, h6, p, a, span, div, button, input, textarea {
+            font-family: 'Baloo Da 2', sans-serif;
+        }
+        /* Specify a uniform font size for h1 tags within section elements */
+        section h1 {
+            font-size: 2.5rem; /* Adjust the size as needed */
         }
         /* Smooth scrolling behavior */
         html {
@@ -30,122 +40,135 @@
         }
         /* Custom gradient for hero section */
         .hero-gradient {
-            background: linear-gradient(180deg, rgba(19, 27, 48, 0.95) 0%, rgba(30, 41, 59, 0.85) 100%);
+            background: linear-gradient(180deg, rgba(19, 27, 48, 0.9) 0%, rgba(30, 41, 59, 0.95) 100%);
         }
         .section-gradient {
             background: linear-gradient(180deg, #f1f5f9 0%, #ffffff 100%);
         }
+        /* Animation for fade-in */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .animate-fade-in-up {
+            animation: fadeInUp 1s ease-out forwards;
+        }
+        /* Styling for embedded YouTube video */
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 aspect ratio */
+            height: 0;
+            overflow: hidden;
+            max-width: 100%;
+            background: #000;
+        }
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
     </style>
+
+    <script>
+        function countdown() {
+            return {
+                days: '00',
+                hours: '00',
+                minutes: '00',
+                seconds: '00',
+                targetDate: new Date('2025-11-18T00:00:00'),
+                init() {
+                    this.update();
+                    setInterval(() => {
+                        this.update();
+                    }, 1000);
+                },
+                update() {
+                    const now = new Date();
+                    const diff = this.targetDate.getTime() - now.getTime();
+
+                    if (diff <= 0) {
+                        this.days = this.hours = this.minutes = this.seconds = '00';
+                        return;
+                    }
+
+                    this.days = String(Math.floor(diff / (1000 * 60 * 60 * 24))).padStart(2, '0');
+                    this.hours = String(Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))).padStart(2, '0');
+                    this.minutes = String(Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60))).padStart(2, '0');
+                    this.seconds = String(Math.floor((diff % (1000 * 60)) / 1000)).padStart(2, '0');
+                }
+            }
+        }
+    </script>
+
 </head>
-<body class="bg-slate-100 text-slate-800">
+<body class="bg-slate-50 text-slate-800">
 
     <!-- Header -->
-    <header x-data="{ isOpen: false }" class="bg-slate-800/90 backdrop-blur-sm text-white sticky top-0 z-50 shadow-lg">
+    <header x-data="{ isOpen: false }" class="bg-slate-800/80 backdrop-blur-sm text-white sticky top-0 z-50 shadow-lg">
         <div class="container mx-auto px-6 py-3 flex justify-between items-center">
             <div class="flex items-center space-x-3">
-                <!-- Placeholder for Logo -->
                 <div class="w-12 h-12 bg-slate-600 rounded-full flex items-center justify-center">
                     <span class="text-xs font-bold">লোগো</span>
                 </div>
-                <a href="#" class="text-xl md:text-2xl font-bold tracking-tight">ছায়ান্বিত ’২৬</a>
+                <a href="#" class="text-xl md:text-2xl font-bold tracking-tight">ছায়ান্বিত ’২৬</a>
             </div>
-            
-            <!-- Desktop Navigation -->
-            <nav class="hidden md:flex space-x-6 items-center">
-                <a href="#about-college" class="hover:text-amber-400 transition-colors duration-300">আমাদের কলেজ</a>
-                <a href="#gallery" class="hover:text-amber-400 transition-colors duration-300">গ্যালারি</a>
-                <a href="#about-event" class="hover:text-amber-400 transition-colors duration-300">অনুষ্ঠান সম্পর্কে</a>
-                <a href="#schedule" class="hover:text-amber-400 transition-colors duration-300">সময়সূচী</a>
+            <nav class="hidden md:flex space-x-6 items-center text-sm">
+                <a href="#home" class="hover:text-amber-400 transition-colors duration-300">হোম</a>
+                <a href="#about-event" class="hover:text-amber-400 transition-colors duration-300">অনুষ্ঠান</a>
+                <a href="#schedule" class="hover:text-amber-400 transition-colors duration-300">সূচী</a>
+                <a href="#coordinators" class="hover:text-amber-400 transition-colors duration-300">সমন্বয়ক</a>
+                <a href="#faq" class="hover:text-amber-400 transition-colors duration-300">জিজ্ঞাসা</a>
+                <a href="#contact" class="hover:text-amber-400 transition-colors duration-300">যোগাযোগ</a>
             </nav>
-
-            <!-- Mobile Menu Button -->
             <div class="md:hidden">
                 <button aria-label="Menu" @click="isOpen = !isOpen" class="focus:outline-none">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
-                    </svg>
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
                 </button>
             </div>
         </div>
-        
-        <!-- Mobile Menu -->
         <div x-show="isOpen" @click.away="isOpen = false" class="md:hidden bg-slate-800" x-transition>
-            <a href="#about-college" @click="isOpen = false" class="block py-3 px-6 text-sm hover:bg-slate-700">আমাদের কলেজ</a>
-            <a href="#gallery" @click="isOpen = false" class="block py-3 px-6 text-sm hover:bg-slate-700">গ্যালারি</a>
-            <a href="#about-event" @click="isOpen = false" class="block py-3 px-6 text-sm hover:bg-slate-700">অনুষ্ঠান সম্পর্কে</a>
-            <a href="#schedule" @click="isOpen = false" class="block py-3 px-6 text-sm hover:bg-slate-700">সময়সূচী</a>
+            <a href="#home" @click="isOpen = false" class="block py-3 px-6 text-sm hover:bg-slate-700">হোম</a>
+            <a href="#about-event" @click="isOpen = false" class="block py-3 px-6 text-sm hover:bg-slate-700">অনুষ্ঠান</a>
+            <a href="#schedule" @click="isOpen = false" class="block py-3 px-6 text-sm hover:bg-slate-700">সূচী</a>
+            <a href="#coordinators" @click="isOpen = false" class="block py-3 px-6 text-sm hover:bg-slate-700">সমন্বয়ক</a>
+            <a href="#faq" @click="isOpen = false" class="block py-3 px-6 text-sm hover:bg-slate-700">জিজ্ঞাসা</a>
+            <a href="#contact" @click="isOpen = false" class="block py-3 px-6 text-sm hover:bg-slate-700">যোগাযোগ</a>
         </div>
     </header>
 
-    <!-- Main Content -->
     <main>
-        <!-- Hero Section -->
-        <section class="relative h-[60vh] md:h-[80vh] flex items-center justify-center text-center text-white p-6" style="background: url('https://placehold.co/1200x800/1e293b/ffffff?text=ক্যাম্পাস+রাত্রি') no-repeat center center/cover;">
+        <!-- Hero Section with Countdown -->
+        <section id="home" class="relative min-h-screen flex items-center justify-center text-center text-white p-6" style="background: url('./images/image1.webp') no-repeat center center/cover;">
             <div class="absolute inset-0 hero-gradient"></div>
-            <div class="relative z-10 animate-fade-in-up">
-                <h1 class="text-4xl md:text-6xl lg:text-7xl font-extrabold tracking-wider leading-tight mb-4" style="text-shadow: 2px 2px 8px rgba(0,0,0,0.7);">
-                    ছায়ান্বিত ’২৬
+            <div class="relative z-10 animate-fade-in-up" x-data="countdown()">
+                <h1 class="text-5xl md:text-7xl lg:text-8xl font-extrabold tracking-wider leading-tight mb-4" style="text-shadow: 2px 2px 8px rgba(0,0,0,0.7);">
+                    ছায়ান্বিত ’২৬
                 </h1>
-                <p class="text-lg md:text-2xl font-light text-slate-300 mb-2">শহীদ বুলবুল সরকারি কলেজ, পাবনা</p>
-                <!-- <p class="max-w-2xl mx-auto text-amber-300 font-medium">২০২৪-২০২৫ শিক্ষাবর্ষের ব্যাচের বিদায় সংবর্ধনা ও স্মৃতিচারণ</p> -->
-                <p class="max-w-2xl mx-auto text-amber-300 font-medium">এইচএসসি ২০২৬ ব্যাচের র‍্যাগ ডে ও বিদায় সংবর্ধনা</p>
-                <!-- <p class="max-w-2xl mx-auto text-amber-300 font-medium">এইচএসসি ২০২৬ ব্যাচের বিদায় সংবর্ধনা ও স্মৃতিচারণ</p> -->
-            </div>
-        </section>
+                <p class="text-lg md:text-2xl font-light text-slate-300 mb-4">শহীদ বুলবুল সরকারি কলেজ, পাবনা</p>
+                <p class="max-w-2xl mx-auto text-amber-300 font-medium text-xl mb-8">এইচএসসি ২০২৬ ব্যাচের র‍্যাগ ডে ও বিদায় সংবর্ধনা</p>
 
-        <!-- About the College Section -->
-        <section id="about-college" class="py-16 md:py-24 bg-white">
-            <div class="container mx-auto px-6">
-                <div class="text-center mb-12">
-                    <h2 class="text-3xl md:text-4xl font-bold text-slate-800">আমাদের কলেজ</h2>
-                    <p class="text-slate-500 mt-2">শহীদ বুলবুল সরকারি কলেজ, পাবনা</p>
-                    <div class="w-24 h-1 bg-amber-500 mx-auto mt-4"></div>
+                <div class="max-w-2xl mx-auto bg-black/30 backdrop-blur-sm rounded-xl p-4 md:p-6 mb-8">
+                    <h3 class="text-xl font-bold mb-4 text-amber-400">উৎসবের বাকি আর মাত্র</h3>
+                    <div class="grid grid-cols-4 gap-2 md:gap-4 text-center">
+                        <div><div class="text-4xl md:text-6xl font-bold" x-text="days">00</div><div class="text-xs md:text-sm uppercase text-slate-300">দিন</div></div>
+                        <div><div class="text-4xl md:text-6xl font-bold" x-text="hours">00</div><div class="text-xs md:text-sm uppercase text-slate-300">ঘন্টা</div></div>
+                        <div><div class="text-4xl md:text-6xl font-bold" x-text="minutes">00</div><div class="text-xs md:text-sm uppercase text-slate-300">মিনিট</div></div>
+                        <div><div class="text-4xl md:text-6xl font-bold" x-text="seconds">00</div><div class="text-xs md:text-sm uppercase text-slate-300">সেকেন্ড</div></div>
+                    </div>
                 </div>
-                <div class="max-w-4xl mx-auto text-slate-600 text-base md:text-lg leading-relaxed space-y-6 text-justify">
-                    <p>
-                        শহীদ বুলবুল সরকারি কলেজ (EIIN: 125664) পাবনা জেলার একটি ঐতিহ্যবাহী সরকারি কলেজ। এটি ১৯৬৮ সালের ১ জুলাই আতাইকুলা সড়কে ‘ইসলামিয়া কলেজ’ নামে প্রতিষ্ঠিত হয়। মুক্তিযুদ্ধকালে এই কলেজের ছাত্র জি.এম. শামসুল আলম বুলবুল (বীর মুক্তিযোদ্ধা) শহীদ হন। তাঁর স্মরণে ১৯৭২ সালে কলেজটির নাম পরিবর্তন করে ‘শহীদ বুলবুল কলেজ’ রাখা হয় এবং ১৯৮৩ সালে এটি জাতীয়করণ করা হয়।
-                    </p>
-                    <p>
-                        কলেজের মূলনীতি হলো “জ্ঞানার্জনে উন্নতি”। বর্তমানে কলেজে প্রায় ৬০০০ শিক্ষার্থী অধ্যয়নরত আছে। উচ্চ মাধ্যমিক শিক্ষার পাশাপাশি জাতীয় বিশ্ববিদ্যালয়ের অধীনে ১৫টি বিষয়ে অনার্স কোর্স চালু রয়েছে। শিক্ষার্থীদের সার্বিক বিকাশে কলেজে রোভার স্কাউট, যুব রেড ক্রিসেন্ট, বাঁধন, সাহিত্য ও সাংস্কৃতিক কেন্দ্র, এবং ডিবেটিং ক্লাবের মতো বিভিন্ন সহ-শিক্ষা কার্যক্রম পরিচালিত হয়।
-                    </p>
-                </div>
-            </div>
-        </section>
 
-        <!-- Photo Gallery Section -->
-        <section id="gallery" class="py-16 md:py-24 section-gradient">
-            <div class="container mx-auto px-6">
-                <div class="text-center mb-12">
-                    <h2 class="text-3xl md:text-4xl font-bold text-slate-800">স্মৃতির পাতা থেকে</h2>
-                    <p class="text-slate-500 mt-2">ক্যাম্পাসের কিছু স্মৃতি</p>
-                    <div class="w-24 h-1 bg-amber-500 mx-auto mt-4"></div>
-                </div>
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
-                    <!-- Image 1 -->
-                    <div class="group overflow-hidden rounded-lg shadow-lg">
-                        <img src="./images/image1.webp" alt="ক্যাম্পাস চত্বর" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
-                    </div>
-                    <!-- Image 2 -->
-                    <div class="group overflow-hidden rounded-lg shadow-lg">
-                        <img src="./images/image2.webp" alt="লাইব্রেরি" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
-                    </div>
-                    <!-- Image 3 -->
-                    <div class="group overflow-hidden rounded-lg shadow-lg">
-                        <img src="./images/image3.webp" alt="ক্লাসরুম" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
-                    </div>
-                    <!-- Image 4 -->
-                     <div class="group overflow-hidden rounded-lg shadow-lg">
-                        <img src="./images/image4.webp" alt="কলেজ ভবন" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
-                    </div>
-                    <!-- Image 5 -->
-                     <div class="group overflow-hidden rounded-lg shadow-lg">
-                        <img src="./images/image5.webp" alt="শহীদ মিনার" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
-                    </div>
-                    <!-- Image 6 -->
-                     <div class="group overflow-hidden rounded-lg shadow-lg">
-                        <img src="./images/image6.webp" alt="বন্ধুদের আড্ডা" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
-                    </div>
-                </div>
+                <a href="#" target="_blank" class="inline-flex items-center bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-full transition-transform transform hover:scale-105 shadow-lg">
+                    <i class="fab fa-facebook-f mr-3"></i> ফেসবুক পেজ
+                </a>
             </div>
         </section>
 
@@ -158,12 +181,33 @@
                     <div class="w-24 h-1 bg-amber-500 mx-auto mt-4"></div>
                 </div>
                 <div class="max-w-4xl mx-auto text-slate-600 text-base md:text-lg leading-relaxed space-y-6 text-center">
-                    <p>
-                        কলেজ জীবনের শেষ মুহূর্তে স্নাতক (এইচএসসি) পরীক্ষার্থীদের জন্য বিশেষ বিদায় অনুষ্ঠান বা র‍্যাগ ডে আয়োজন করা হয়ে থাকে। আমাদের ব্যাচের নাম ‘ছায়ান্বিত ’২৬’। ‘ছায়ান্বিত’ শব্দটির অর্থ ‘ছায়ায় আবৃত’ বা ‘ছায়ার মতো’ – এর মাধ্যমে বোঝানো হয়েছে যে, কলেজ জীবনের স্মৃতিময় অধ্যায়টি ছায়ার মতো আমাদের পরিচয় ও বন্ধনে চিরকাল জড়িয়ে থাকবে।
-                    </p>
-                    <p>
-                        এই বিদায় অনুষ্ঠানের মাধ্যমে আমরা শুধুমাত্র বন্ধুদের বিদায় জানাচ্ছি না, বরং কলেজ ইতিহাসে আমাদের ব্যাচের একটি স্মরণীয় অধ্যায় যুক্ত করছি। অনুষ্ঠানটি শিক্ষাজীবনের সমাপ্তি ও নতুন জীবনের সূচনার এক মেলবন্ধন, যা আমাদের স্মৃতির পাতায় চিরস্মরণীয় হয়ে থাকবে।
-                    </p>
+                    <p>কলেজ জীবনের শেষ মুহূর্তে স্নাতক (এইচএসসি) পরীক্ষার্থীদের জন্য বিশেষ বিদায় অনুষ্ঠান বা র‍্যাগ ডে আয়োজন করা হয়ে থাকে। আমাদের ব্যাচের নাম ‘ছায়ান্বিত ’২৬’। ‘ছায়ান্বিত’ শব্দটির অর্থ ‘ছায়ায় আবৃত’ বা ‘ছায়ার মতো’ – এর মাধ্যমে বোঝানো হয়েছে যে, কলেজ জীবনের স্মৃতিময় অধ্যায়টি ছায়ার মতো আমাদের পরিচয় ও বন্ধনে চিরকাল জড়িয়ে থাকবে।</p>
+                    <p>এই বিদায় অনুষ্ঠানের মাধ্যমে আমরা শুধুমাত্র বন্ধুদের বিদায় জানাচ্ছি না, বরং কলেজ ইতিহাসে আমাদের ব্যাচের একটি স্মরণীয় অধ্যায় যুক্ত করছি। অনুষ্ঠানটি শিক্ষাজীবনের সমাপ্তি ও নতুন জীবনের সূচনার এক মেলবন্ধন, যা আমাদের স্মৃতির পাতায় চিরস্মরণীয় হয়ে থাকবে।</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Announcements Section -->
+        <section id="announcements" class="py-16 md:py-24 section-gradient">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12"><h2 class="text-3xl md:text-4xl font-bold text-slate-800">গুরুত্বপূর্ণ ঘোষণাসমূহ</h2><p class="text-slate-500 mt-2">সর্বশেষ আপডেট ও খবর</p><div class="w-24 h-1 bg-amber-500 mx-auto mt-4"></div></div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="bg-white rounded-lg shadow-lg overflow-hidden group"><img src="https://placehold.co/160x90/e2e8f0/334155?text=HSC" alt="এইচএসসি" class="w-full h-56 object-cover group-hover:opacity-90 transition-opacity"><div class="p-6"><h3 class="text-xl font-bold mb-2 text-slate-700">২০২৬ সালের এইচএসসি পরীক্ষা এবং টেস্ট আপডেট!</h3><p class="text-slate-600 text-sm leading-relaxed">২০২৬ ব্যাচের এইচএসসি পরীক্ষা হবে ফুল সিলেবাস অনুযায়ী, অনুষ্ঠিত হবে আগামী এপ্রিল মাসে, আর জানুয়ারিতে টেস্ট পরীক্ষা নেওয়া হবে শিক্ষা বোর্ডের তথ্য অনুযায়ী।</p></div></div>
+                    <div class="bg-white rounded-lg shadow-lg overflow-hidden group"><div class="video-container rounded-t-lg"><iframe width="560" height="315" src="https://www.youtube.com/embed/-j0dlcfekqw?si=5g3VK1J9p0IOfPke" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div><div class="p-6"><h3 class="text-xl font-bold mb-2 text-slate-700">আমাদের প্রোমো ভিডিও</h3><p class="text-slate-600 text-sm leading-relaxed">আমাদের ব্যাচের স্মৃতিগুলো নিয়ে তৈরি করা হয়েছে একটি বিশেষ প্রোমো ভিডিও। ভিডিওটি দেখুন এবং বন্ধুদের সাথে শেয়ার করুন।</p></div></div>
+                    <div class="bg-white rounded-lg shadow-lg overflow-hidden group"><img src="./images/bridal_tales.webp" alt="ব্রাইডাল টেলস" class="w-full h-56 object-cover group-hover:opacity-90 transition-opacity"><div class="p-6"><h3 class="text-xl font-bold mb-2 text-slate-700">Bridal Tales এর সাথে চুক্তি সম্পন্ন</h3><p class="text-slate-600 text-sm leading-relaxed">পুরো অনুষ্ঠানের ফটোগ্রাফি ও সিনেমাটোগ্রাফির জন্য ৩০ হাজার টাকায় চুক্তি সম্পন্ন, এর মধ্যে ফটো, ভিডিও এবং শর্ট ভিডিওসহ সমস্ত কাজ অন্তর্ভুক্ত।</p></div></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Student Count Section with CounterUp2 -->
+        <section class="py-16 md:py-20 bg-slate-800 text-white">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12"><h2 class="text-3xl md:text-4xl font-bold">এক নজরে আমরা</h2><p class="text-slate-300 mt-2">ছায়ান্বিত ’২৬ ব্যাচের শিক্ষার্থী সংখ্যা</p><div class="w-24 h-1 bg-amber-500 mx-auto mt-4"></div></div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 text-center">
+                    <div class="bg-slate-700/50 p-6 rounded-xl"><i class="fas fa-flask text-4xl text-amber-400 mb-4"></i><div class="text-5xl font-extrabold counter">659</div><p class="mt-2 text-lg">বিজ্ঞান</p></div>
+                    <div class="bg-slate-700/50 p-6 rounded-xl"><i class="fas fa-palette text-4xl text-amber-400 mb-4"></i><div class="text-5xl font-extrabold counter">358</div><p class="mt-2 text-lg">মানবিক</p></div>
+                    <div class="bg-slate-700/50 p-6 rounded-xl"><i class="fas fa-chart-line text-4xl text-amber-400 mb-4"></i><div class="text-5xl font-extrabold counter">335</div><p class="mt-2 text-lg">ব্যবসায় শিক্ষা</p></div>
+                    <div class="bg-amber-500 text-slate-900 p-6 rounded-xl"><i class="fas fa-users text-4xl mb-4"></i><div class="text-5xl font-extrabold counter">1352</div><p class="mt-2 text-lg font-semibold">সর্বমোট</p></div>
                 </div>
             </div>
         </section>
@@ -171,57 +215,116 @@
         <!-- Event Schedule Section -->
         <section id="schedule" class="py-16 md:py-24 section-gradient">
             <div class="container mx-auto px-6">
-                <div class="text-center mb-12">
-                    <h2 class="text-3xl md:text-4xl font-bold text-slate-800">অনুষ্ঠানসূচী</h2>
-                    <p class="text-slate-500 mt-2">দিনব্যাপী আয়োজন</p>
-                    <div class="w-24 h-1 bg-amber-500 mx-auto mt-4"></div>
-                </div>
-                <div class="max-w-2xl mx-auto">
+                <div class="text-center mb-12"><h2 class="text-3xl md:text-4xl font-bold text-slate-800">অনুষ্ঠানসূচী</h2><p class="text-slate-500 mt-2">দিনব্যাপী আয়োজন</p><div class="w-24 h-1 bg-amber-500 mx-auto mt-4"></div></div>
+                <div class="max-w-3xl mx-auto">
                     <div class="relative border-l-2 border-amber-400 ml-4 md:ml-0">
-                        <!-- Schedule Item 1 -->
-                        <div class="mb-8 pl-8 md:pl-10 relative">
-                            <div class="absolute -left-4 top-1 w-7 h-7 bg-slate-800 rounded-full border-4 border-amber-400"></div>
-                            <p class="text-amber-600 font-semibold">সকাল ৯:০০ - সকাল ১০:০০</p>
-                            <h3 class="text-xl font-bold text-slate-700 mt-1">রেজিস্ট্রেশন ও টি-শার্ট বিতরণ</h3>
-                            <p class="text-slate-500 mt-1">কলেজ প্রাঙ্গনে শিক্ষার্থীদের আগমন ও শুভেচ্ছা উপহার গ্রহণ।</p>
-                        </div>
-                        <!-- Schedule Item 2 -->
-                        <div class="mb-8 pl-8 md:pl-10 relative">
-                            <div class="absolute -left-4 top-1 w-7 h-7 bg-slate-800 rounded-full border-4 border-amber-400"></div>
-                            <p class="text-amber-600 font-semibold">সকাল ১০:৩০ - দুপুর ১:০০</p>
-                            <h3 class="text-xl font-bold text-slate-700 mt-1">স্মৃতিচারণ ও আলোচনা</h3>
-                            <p class="text-slate-500 mt-1">শিক্ষক ও শিক্ষার্থীদের স্মৃতিচারণমূলক বক্তব্য।</p>
-                        </div>
-                        <!-- Schedule Item 3 -->
-                        <div class="mb-8 pl-8 md:pl-10 relative">
-                           <div class="absolute -left-4 top-1 w-7 h-7 bg-slate-800 rounded-full border-4 border-amber-400"></div>
-                            <p class="text-amber-600 font-semibold">দুপুর ২:৩০ - বিকাল ৫:০০</p>
-                            <h3 class="text-xl font-bold text-slate-700 mt-1">সাংস্কৃতিক অনুষ্ঠান</h3>
-                            <p class="text-slate-500 mt-1">শিক্ষার্থীদের অংশগ্রহণে নাচ, গান ও নাটিকা পরিবেশনা।</p>
-                        </div>
-                        <!-- Schedule Item 4 -->
-                        <div class="pl-8 md:pl-10 relative">
-                            <div class="absolute -left-4 top-1 w-7 h-7 bg-slate-800 rounded-full border-4 border-amber-400"></div>
-                            <p class="text-amber-600 font-semibold">সন্ধ্যা ৭:০০ - রাত ১০:০০</p>
-                            <h3 class="text-xl font-bold text-slate-700 mt-1">কনসার্ট</h3>
-                            <p class="text-slate-500 mt-1">দেশের জনপ্রিয় ব্যান্ডের পরিবেশনায় মনোমুগ্ধকর কনসার্ট।</p>
-                        </div>
+                        <div class="mb-8 pl-8 md:pl-10 relative"><div class="absolute -left-4 top-1 w-7 h-7 bg-slate-800 rounded-full border-4 border-amber-400"></div><p class="text-amber-600 font-semibold">সকাল ৯:০০</p><h3 class="text-xl font-bold text-slate-700 mt-1">রেজিস্ট্রেশন ও উপহার বিতরণ</h3><p class="text-slate-500 mt-1">ছেলেদের টি-শার্ট ও মেয়েদের জন্য বাটনড শার্ট বিতরণ।</p></div>
+                        <div class="mb-8 pl-8 md:pl-10 relative"><div class="absolute -left-4 top-1 w-7 h-7 bg-slate-800 rounded-full border-4 border-amber-400"></div><p class="text-amber-600 font-semibold">সকাল ১০:০০</p><h3 class="text-xl font-bold text-slate-700 mt-1">উদ্বোধনী মুহূর্ত</h3><p class="text-slate-500 mt-1">অধ্যক্ষ মহোদয়কে বরণ, বেলুন ও পায়রা উড্ডয়ন।</p></div>
+                        <div class="mb-8 pl-8 md:pl-10 relative"><div class="absolute -left-4 top-1 w-7 h-7 bg-slate-800 rounded-full border-4 border-amber-400"></div><p class="text-amber-600 font-semibold">সকাল ১১:০০</p><h3 class="text-xl font-bold text-slate-700 mt-1">পাপেট শো</h3><p class="text-slate-500 mt-1">সকলের জন্য বিশেষ পাপেট শো আয়োজন।</p></div>
+                        <div class="mb-8 pl-8 md:pl-10 relative"><div class="absolute -left-4 top-1 w-7 h-7 bg-slate-800 rounded-full border-4 border-amber-400"></div><p class="text-amber-600 font-semibold">দুপুর ১২:০০</p><h3 class="text-xl font-bold text-slate-700 mt-1">স্মৃতি লিখন ও ক্যামেরাবন্দী</h3><p class="text-slate-500 mt-1">মার্কার দিয়ে টি-শার্টে স্বাক্ষর এবং স্মৃতি ক্যামেরাবন্দী করা।</p></div>
+                        <div class="mb-8 pl-8 md:pl-10 relative"><div class="absolute -left-4 top-1 w-7 h-7 bg-slate-800 rounded-full border-4 border-amber-400"></div><p class="text-amber-600 font-semibold">দুপুর ১:০০ - ৩:০০</p><h3 class="text-xl font-bold text-slate-700 mt-1">মধ্যাহ্নভোজ ও বিরতি</h3><p class="text-slate-500 mt-1">সকলের জন্য দুপুরের খাবারের আয়োজন।</p></div>
+                        <div class="mb-8 pl-8 md:pl-10 relative"><div class="absolute -left-4 top-1 w-7 h-7 bg-slate-800 rounded-full border-4 border-amber-400"></div><p class="text-amber-600 font-semibold">দুপুর ৩:০০ - ৪:০০</p><h3 class="text-xl font-bold text-slate-700 mt-1">বক্তব্য পর্ব</h3><p class="text-slate-500 mt-1">শিক্ষক ও শিক্ষার্থীদের স্মৃতিচারণমূলক বক্তব্য।</p></div>
+                        <div class="mb-8 pl-8 md:pl-10 relative"><div class="absolute -left-4 top-1 w-7 h-7 bg-slate-800 rounded-full border-4 border-amber-400"></div><p class="text-amber-600 font-semibold">বিকাল ৪:০০ - ৫:০০</p><h3 class="text-xl font-bold text-slate-700 mt-1">সাংস্কৃতিক অনুষ্ঠান</h3><p class="text-slate-500 mt-1">শিক্ষার্থীদের অংশগ্রহণে নাচ, গান ও অন্যান্য পরিবেশনা।</p></div>
+                        <div class="mb-8 pl-8 md:pl-10 relative"><div class="absolute -left-4 top-1 w-7 h-7 bg-slate-800 rounded-full border-4 border-amber-400"></div><p class="text-amber-600 font-semibold">বিকাল ৫:০০ - ৬:০০</p><h3 class="text-xl font-bold text-slate-700 mt-1">ম্যাজিক শো</h3><p class="text-slate-500 mt-1">আমন্ত্রিত জাদুকরের মনোমুগ্ধকর ম্যাজিক শো।</p></div>
+                        <div class="pl-8 md:pl-10 relative"><div class="absolute -left-4 top-1 w-7 h-7 bg-slate-800 rounded-full border-4 border-amber-400"></div><p class="text-amber-600 font-semibold">সন্ধ্যা ৬:০০ থেকে</p><h3 class="text-xl font-bold text-slate-700 mt-1">কনসার্ট</h3><p class="text-slate-500 mt-1">দেশের জনপ্রিয় ব্যান্ডের পরিবেশনায় জমকালো কনসার্ট।</p></div>
                     </div>
                 </div>
             </div>
         </section>
+
+        <!-- Photo Gallery Section -->
+        <section id="gallery" class="py-16 md:py-24 bg-white">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12"><h2 class="text-3xl md:text-4xl font-bold text-slate-800">স্মৃতির পাতা থেকে</h2><p class="text-slate-500 mt-2">ক্যাম্পাসের কিছু স্মৃতি</p><div class="w-24 h-1 bg-amber-500 mx-auto mt-4"></div></div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
+                    <div class="group overflow-hidden rounded-lg shadow-lg"><img src="./images/image1.webp" alt="ক্যাম্পাস চত্বর" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"></div>
+                    <div class="group overflow-hidden rounded-lg shadow-lg"><img src="./images/image2.webp" alt="লাইব্রেরি" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"></div>
+                    <div class="group overflow-hidden rounded-lg shadow-lg"><img src="./images/image3.webp" alt="ক্লাসরুম" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"></div>
+                    <div class="group overflow-hidden rounded-lg shadow-lg"><img src="./images/image4.webp" alt="কলেজ ভবন" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"></div>
+                    <div class="group overflow-hidden rounded-lg shadow-lg"><img src="./images/image5.webp" alt="শহীদ মিনার" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"></div>
+                    <div class="group overflow-hidden rounded-lg shadow-lg"><img src="./images/image6.webp" alt="বন্ধুদের আড্ডা" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Payment Coordinators Section -->
+        <section id="coordinators" class="py-16 md:py-24 section-gradient">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12"><h2 class="text-3xl md:text-4xl font-bold text-slate-800">পেমেন্ট ও রেজিস্ট্রেশন সমন্বয়ক</h2><p class="text-slate-500 mt-2">যেকোনো প্রয়োজনে তাদের সাথে যোগাযোগ করুন</p><div class="w-24 h-1 bg-amber-500 mx-auto mt-4"></div></div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="text-center"><h3 class="text-2xl font-bold mb-6 text-slate-700">বিজ্ঞান বিভাগ</h3><div class="space-y-8"><div><img src="./images/wasi.jpg" class="w-32 h-32 rounded-full mx-auto shadow-lg border-4 border-white"><h4 class="text-lg font-semibold mt-3 flex items-center justify-center">আরিয়ান মল্লিক ওয়াসি<i class="fas fa-male text-blue-500 ml-2"></i></h4><a target="_blank" href="https://www.facebook.com/wasimaster" class="text-blue-600 hover:underline text-sm"><i class="fab fa-facebook"></i> প্রোফাইল</a></div><div><img src="./images/mittika.jpg" class="w-32 h-32 rounded-full mx-auto shadow-lg border-4 border-white"><h4 class="text-lg font-semibold mt-3 flex items-center justify-center">মারজিয়া মিত্তিকা<i class="fas fa-female text-pink-500 ml-2"></i></h4><a target="_blank" href="https://www.facebook.com/marzia.mittika" class="text-blue-600 hover:underline text-sm"><i class="fab fa-facebook"></i> প্রোফাইল</a></div></div></div>
+                    <div class="text-center"><h3 class="text-2xl font-bold mb-6 text-slate-700">মানবিক বিভাগ</h3><div class="space-y-8"><div><img src="https://placehold.co/150x150/e2e8f0/334155?text=Image" class="w-32 h-32 rounded-full mx-auto shadow-lg border-4 border-white"><h4 class="text-lg font-semibold mt-3 flex items-center justify-center">আপনি কি হতে চান? <i class="fas fa-male text-blue-500 ml-2"></i></h4><a target="_blank" href="#" class="text-blue-600 hover:underline text-sm"><i class="fab fa-facebook"></i> প্রোফাইল</a></div><div><img src="./images/hafsa.jpg" class="w-32 h-32 rounded-full mx-auto shadow-lg border-4 border-white"><h4 class="text-lg font-semibold mt-3 flex items-center justify-center">নাফিজা তানজিম হাফসা <i class="fas fa-female text-pink-500 ml-2"></i></h4><a target="_blank" href="https://www.facebook.com/nafiza.tanzim.2025" class="text-blue-600 hover:underline text-sm"><i class="fab fa-facebook"></i> প্রোফাইল</a></div></div></div>
+                    <div class="text-center"><h3 class="text-2xl font-bold mb-6 text-slate-700">ব্যবসায় শিক্ষা</h3><div class="space-y-8"><div><img src="https://placehold.co/150x150/e2e8f0/334155?text=Image" class="w-32 h-32 rounded-full mx-auto shadow-lg border-4 border-white"><h4 class="text-lg font-semibold mt-3 flex items-center justify-center">আপনি কি হতে চান? <i class="fas fa-male text-blue-500 ml-2"></i></h4><a target="_blank" href="#" class="text-blue-600 hover:underline text-sm"><i class="fab fa-facebook"></i> প্রোফাইল</a></div><div><img src="./images/shanta.jpg" class="w-32 h-32 rounded-full mx-auto shadow-lg border-4 border-white"><h4 class="text-lg font-semibold mt-3 flex items-center justify-center">শান্তা <i class="fas fa-female text-pink-500 ml-2"></i></h4><a target="_blank" href="https://www.facebook.com/shi.zu.ka.659590" class="text-blue-600 hover:underline text-sm"><i class="fab fa-facebook"></i> প্রোফাইল</a></div></div></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About the College Section -->
+        <section id="about-college" class="py-16 md:py-24 section-gradient">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12"><h2 class="text-3xl md:text-4xl font-bold text-slate-800">আমাদের কলেজ</h2><p class="text-slate-500 mt-2">শহীদ বুলবুল সরকারি কলেজ, পাবনা</p><div class="w-24 h-1 bg-amber-500 mx-auto mt-4"></div></div>
+                <div class="max-w-4xl mx-auto text-slate-600 text-base md:text-lg leading-relaxed space-y-6 text-justify">
+                    <p>শহীদ বুলবুল সরকারি কলেজ (EIIN: 125664) পাবনা জেলার একটি ঐতিহ্যবাহী সরকারি কলেজ। এটি ১৯৬৮ সালের ১ জুলাই আতাইকুলা সড়কে ‘ইসলামিয়া কলেজ’ নামে প্রতিষ্ঠিত হয়। মুক্তিযুদ্ধকালে এই কলেজের ছাত্র জি.এম. শামসুল আলম বুলবুল (বীর মুক্তিযোদ্ধা) শহীদ হন। তাঁর স্মরণে ১৯৭২ সালে কলেজটির নাম পরিবর্তন করে ‘শহীদ বুলবুল কলেজ’ রাখা হয় এবং ১৯৮৩ সালে এটি জাতীয়করণ করা হয়।</p>
+                    <p>কলেজের মূলনীতি হলো “জ্ঞানার্জনে উন্নতি”। বর্তমানে কলেজে প্রায় ৬০০০ শিক্ষার্থী অধ্যয়নরত আছে। উচ্চ মাধ্যমিক শিক্ষার পাশাপাশি জাতীয় বিশ্ববিদ্যালয়ের অধীনে ১৫টি বিষয়ে অনার্স কোর্স চালু রয়েছে। শিক্ষার্থীদের সার্বিক বিকাশে কলেজে রোভার স্কাউট, যুব রেড ক্রিসেন্ট, বাঁধন, সাহিত্য ও সাংস্কৃতিক কেন্দ্র, এবং ডিবেটিং ক্লাবের মতো বিভিন্ন সহ-শিক্ষা কার্যক্রম পরিচালিত হয়।</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section id="faq" class="py-16 md:py-24 bg-white">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12"><h2 class="text-3xl md:text-4xl font-bold text-slate-800">সাধারণ জিজ্ঞাসা</h2><p class="text-slate-500 mt-2">আপনার প্রশ্নের উত্তরগুলো এখানে পেতে পারেন</p><div class="w-24 h-1 bg-amber-500 mx-auto mt-4"></div></div>
+                <div class="max-w-3xl mx-auto space-y-4" x-data="{ selected: null }">
+                    <div class="rounded-lg border border-slate-200"><button @click="selected = selected === 1 ? null : 1" class="w-full flex justify-between items-center text-left text-lg font-semibold p-5"><span class="text-slate-800">রেজিস্ট্রেশন ফি কত?</span><i :class="{'rotate-180': selected === 1, 'rotate-0': selected !== 1}" class="fas fa-chevron-down transition-transform duration-300"></i></button><div x-show="selected === 1" x-collapse x-transition class="p-5 pt-0 text-slate-600"><p>প্রত্যেক শিক্ষার্থীর জন্য রেজিস্ট্রেশন ফি ১২০০ টাকা নির্ধারণ করা হয়েছে। এর মধ্যে গিফট, টি-শার্ট, খাবার এবং কনসার্ট, স্টেজ ও লাইটিংসহ অন্যান্য খরচ অন্তর্ভুক্ত।</p></div></div>
+                    <div class="rounded-lg border border-slate-200"><button @click="selected = selected === 2 ? null : 2" class="w-full flex justify-between items-center text-left text-lg font-semibold p-5"><span class="text-slate-800">টাকা জমা দেওয়ার শেষ তারিখ কবে?</span><i :class="{'rotate-180': selected === 2, 'rotate-0': selected !== 2}" class="fas fa-chevron-down transition-transform duration-300"></i></button><div x-show="selected === 2" x-collapse x-transition class="p-5 pt-0 text-slate-600"><p>টাকা জমা দেওয়ার শেষ তারিখ এখনো নির্ধারিত হয়নি। আপনার নিজ নিজ বিভাগের সমন্বয়কের কাছে শীঘ্রই টাকা জমা দিন।</p></div></div>
+                    <div class="rounded-lg border border-slate-200"><button @click="selected = selected === 3 ? null : 3" class="w-full flex justify-between items-center text-left text-lg font-semibold p-5"><span class="text-slate-800">অন্য কলেজের বন্ধুরা কি র‍্যাগ ডে করতে পারবে?</span><i :class="{'rotate-180': selected === 3, 'rotate-0': selected !== 3}" class="fas fa-chevron-down transition-transform duration-300"></i></button><div x-show="selected === 3" x-collapse x-transition class="p-5 pt-0 text-slate-600"><p>দুঃখিত, এই আয়োজনটি শুধুমাত্র শহীদ বুলবুল সরকারি কলেজের এইচএসসি ২০২৬ ব্যাচের শিক্ষার্থীদের জন্য।</p></div></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="py-16 md:py-24 bg-slate-800 text-white">
+            <div class="container mx-auto px-6 text-center">
+                 <h2 class="text-3xl md:text-4xl font-bold">যোগাযোগ</h2>
+                 <p class="text-slate-300 mt-2 mb-8">যেকোনো তথ্যের জন্য আমাদের সাথে যোগাযোগ করুন</p>
+                 <div class="flex flex-col md:flex-row justify-center items-center gap-6">
+                    <a href="#" target="_blank" class="inline-flex items-center bg-blue-600 hover:bg-blue-700 font-bold py-3 px-8 rounded-full transition-transform transform hover:scale-105 shadow-lg"><i class="fab fa-facebook-messenger mr-3"></i> ফেসবুকে মেসেজ দিন</a>
+                    <a href="mailto:chayannito26@gmail.com" class="inline-flex items-center bg-red-600 hover:bg-red-700 font-bold py-3 px-8 rounded-full transition-transform transform hover:scale-105 shadow-lg"><i class="fas fa-envelope mr-3"></i> ই-মেইল করুন</a>
+                 </div>
+            </div>
+        </section>
+
     </main>
 
     <!-- Footer -->
-    <footer class="bg-slate-800 text-slate-300 py-8">
+    <footer class="bg-slate-900 text-slate-400 py-8">
         <div class="container mx-auto px-6 text-center">
-            <p class="font-semibold text-lg mb-2">ছায়ান্বিত ’২৬</p>
-            <p class="text-sm text-slate-400">শহীদ বুলবুল সরকারি কলেজ, পাবনা | এইচএসসি ২০২৬ ব্যাচ</p>
-            <div class="mt-4">
-                <p class="text-xs">&copy; ২০২৫ | সকল স্বত্ব সংরক্ষিত</p>
-            </div>
+            <p class="font-semibold text-lg mb-2 text-white">ছায়ান্বিত ’২৬</p>
+            <p class="text-sm">শহীদ বুলবুল সরকারি কলেজ, পাবনা | এইচএসসি ২০২৬ ব্যাচ</p>
+            <div class="mt-4"><p class="text-xs">&copy; ২০২৫ | সকল স্বত্ব সংরক্ষিত</p></div>
         </div>
     </footer>
 
+    <!-- CounterUp2 Script -->
+    <script src="https://cdn.jsdelivr.net/npm/counterup2@2.0.2/dist/index.min.js"></script>
+    <script>
+        const counterUp = window.counterUp.default;
+        const counters = document.querySelectorAll('.counter');
+
+        counters.forEach(counter => {
+            const observer = new IntersectionObserver(entries => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        counterUp(counter, {
+                            duration: 2000,
+                            delay: 16,
+                        });
+                        observer.unobserve(counter);
+                    }
+                });
+            }, { threshold: 0.1 });
+            observer.observe(counter);
+        });
+    </script>
 </body>
 </html>
