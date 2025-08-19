@@ -308,6 +308,9 @@
 
     <!-- CounterUp2 Script -->
     <script src="https://cdn.jsdelivr.net/npm/counterup2@2.0.2/dist/index.min.js"></script>
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-messaging.js"></script>
     <script>
         const counterUp = window.counterUp.default;
         const counters = document.querySelectorAll('.counter');
@@ -326,6 +329,57 @@
             }, { threshold: 0.1 });
             observer.observe(counter);
         });
+
+         // Initialize Firebase
+         const firebaseConfig = {
+            apiKey: "AIzaSyDsI5v9okHOdxbEw8k8hXwzPzZMpDrirbM",
+            authDomain: "chayannito-26.firebaseapp.com",
+            projectId: "chayannito-26",
+            storageBucket: "chayannito-26.firebasestorage.app",
+            messagingSenderId: "127749935084",
+            appId: "1:127749935084:web:8bf6df50ce2cbc96cdbac9",
+            measurementId: "G-CRHHT66GTQ"
+          };
+
+          firebase.initializeApp(firebaseConfig);
+          const messaging = firebase.messaging();
+
+          // Request permission and get token
+          function requestNotificationPermission() {
+              console.log('Requesting permission...');
+              Notification.requestPermission().then((permission) => {
+                  if (permission === 'granted') {
+                      console.log('Notification permission granted.');
+
+                      // Get the token
+                      messaging.getToken({ vapidKey: 'BKOFqqMHtkRgVLCOrixSohvUugiRxKedf1MYnZZYaMn8yt5NkwI7HMrpXP8pvPM-jlKamPAQapRL-rgUqm8HKTo' }).then((currentToken) => {
+                          if (currentToken) {
+                              console.log('FCM Token:', currentToken);
+                              // You can send this token to your server to send notifications
+                          } else {
+                              console.log('No registration token available. Request permission to generate one.');
+                          }
+                      }).catch((err) => {
+                          console.log('An error occurred while retrieving token. ', err);
+                      });
+                  } else {
+                      console.log('Unable to get permission to notify.');
+                  }
+              });
+          }
+
+          // Call the function to request permission
+          // You might want to trigger this on a button click for better user experience
+          requestNotificationPermission();
+
+          // Handle incoming messages when the app is in the foreground
+          messaging.onMessage((payload) => {
+              console.log('Message received. ', payload);
+              // Customize notification here
+              const notification = new Notification(payload.notification.title, {
+                  body: payload.notification.body,
+              });
+          });
     </script>
 </body>
 </html>
