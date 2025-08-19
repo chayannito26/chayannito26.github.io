@@ -1,0 +1,7 @@
+User-agent: *
+Disallow: /expenses
+Disallow: /income
+Disallow: /college-students
+Disallow: /verify
+
+Sitemap: https://chayannito26.com/sitemap.xml
