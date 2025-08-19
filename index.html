@@ -311,6 +311,7 @@
     <!-- Firebase SDK -->
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-messaging.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
     <script>
         const counterUp = window.counterUp.default;
         const counters = document.querySelectorAll('.counter');
@@ -330,8 +331,8 @@
             observer.observe(counter);
         });
 
-         // Initialize Firebase
-         const firebaseConfig = {
+        // Initialize Firebase
+        const firebaseConfig = {
             apiKey: "AIzaSyDsI5v9okHOdxbEw8k8hXwzPzZMpDrirbM",
             authDomain: "chayannito-26.firebaseapp.com",
             projectId: "chayannito-26",
@@ -339,47 +340,58 @@
             messagingSenderId: "127749935084",
             appId: "1:127749935084:web:8bf6df50ce2cbc96cdbac9",
             measurementId: "G-CRHHT66GTQ"
-          };
+        };
 
-          firebase.initializeApp(firebaseConfig);
-          const messaging = firebase.messaging();
+        firebase.initializeApp(firebaseConfig);
 
-          // Request permission and get token
-          function requestNotificationPermission() {
-              console.log('Requesting permission...');
-              Notification.requestPermission().then((permission) => {
-                  if (permission === 'granted') {
-                      console.log('Notification permission granted.');
+        var messaging = firebase.messaging();
+        var db = firebase.firestore();
 
-                      // Get the token
-                      messaging.getToken({ vapidKey: 'BKOFqqMHtkRgVLCOrixSohvUugiRxKedf1MYnZZYaMn8yt5NkwI7HMrpXP8pvPM-jlKamPAQapRL-rgUqm8HKTo' }).then((currentToken) => {
-                          if (currentToken) {
-                              console.log('FCM Token:', currentToken);
-                              // You can send this token to your server to send notifications
-                          } else {
-                              console.log('No registration token available. Request permission to generate one.');
-                          }
-                      }).catch((err) => {
-                          console.log('An error occurred while retrieving token. ', err);
-                      });
-                  } else {
-                      console.log('Unable to get permission to notify.');
-                  }
-              });
-          }
+        function requestNotificationPermission() {
+            console.log('Requesting permission...');
+            Notification.requestPermission().then(function(permission) {
+                if (permission === 'granted') {
+                    console.log('Notification permission granted.');
 
-          // Call the function to request permission
-          // You might want to trigger this on a button click for better user experience
-          requestNotificationPermission();
+                    messaging.getToken({
+                        vapidKey: 'BKOFqqMHtkRgVLCOrixSohvUugiRxKedf1MYnZZYaMn8yt5NkwI7HMrpXP8pvPM-jlKamPAQapRL-rgUqm8HKTo'
+                    }).then(function(currentToken) {
+                        if (currentToken) {
+                            console.log('FCM Token:', currentToken);
 
-          // Handle incoming messages when the app is in the foreground
-          messaging.onMessage((payload) => {
-              console.log('Message received. ', payload);
-              // Customize notification here
-              const notification = new Notification(payload.notification.title, {
-                  body: payload.notification.body,
-              });
-          });
+                            // Save token in Firestore
+                            db.collection("fcmTokens").doc(currentToken).set({
+                                token: currentToken,
+                                subscribedAt: firebase.firestore.FieldValue.serverTimestamp()
+                            }).then(function() {
+                                console.log('Token saved to Firestore.');
+                            }).catch(function(err) {
+                                console.error('Error saving token: ', err);
+                            });
+
+                        } else {
+                            console.log('No registration token available.');
+                        }
+                    }).catch(function(err) {
+                        console.error('Error retrieving token: ', err);
+                    });
+
+                } else {
+                    console.log('Unable to get permission to notify.');
+                }
+            });
+        }
+
+        requestNotificationPermission();
+
+        // Foreground messages
+        messaging.onMessage(function(payload) {
+            console.log('Message received: ', payload);
+            new Notification(payload.notification.title, {
+                body: payload.notification.body
+            });
+        });
     </script>
+
 </body>
 </html>
