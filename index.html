@@ -395,12 +395,12 @@
         requestNotificationPermission();
 
         // Foreground messages
-        messaging.onMessage(function(payload) {
+        /* messaging.onMessage(function(payload) {
             console.log('Message received: ', payload);
             new Notification(payload.notification.title, {
                 body: payload.notification.body
             });
-        });
+        }); */
     </script>
 
 </body>
