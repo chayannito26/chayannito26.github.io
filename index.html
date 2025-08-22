@@ -320,6 +320,25 @@
                     <a href="https://m.me/chayannito26" target="_blank" class="inline-flex items-center bg-blue-600 hover:bg-blue-700 font-bold py-3 px-8 rounded-full transition-transform transform hover:scale-105 shadow-lg"><i class="fab fa-facebook-messenger mr-3"></i> মেসেঞ্জারে মেসেজ দিন</a>
                     <a href="mailto:chayannito26@gmail.com" class="inline-flex items-center bg-red-600 hover:bg-red-700 font-bold py-3 px-8 rounded-full transition-transform transform hover:scale-105 shadow-lg"><i class="fas fa-envelope mr-3"></i> ই-মেইল করুন</a>
                  </div>
+
+                 <!-- Contact Form -->
+                <div x-data="contactForm()" class="mt-12 max-w-xl mx-auto">
+                    <form @submit.prevent="submitForm">
+                        <div x-show="successMessage" class="bg-green-500/20 text-green-300 p-4 rounded-lg mb-4" x-text="successMessage" style="display: none;"></div>
+                        <div x-show="errorMessage" class="bg-red-500/20 text-red-300 p-4 rounded-lg mb-4" x-text="errorMessage" style="display: none;"></div>
+
+                        <div class="grid grid-cols-1 gap-6">
+                            <input type="text" x-model="name" placeholder="আপনার নাম" required class="bg-slate-700/50 border border-slate-600 rounded-lg py-3 px-4 text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-amber-500 transition">
+                            <textarea x-model="message" placeholder="আপনার বার্তা" rows="4" required class="bg-slate-700/50 border border-slate-600 rounded-lg py-3 px-4 text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-amber-500 transition"></textarea>
+                            <button type="submit" :disabled="loading" class="bg-amber-500 hover:bg-amber-600 text-slate-900 font-bold py-3 px-8 rounded-full transition-transform transform hover:scale-105 shadow-lg disabled:bg-slate-600 disabled:cursor-not-allowed">
+                                <span x-show="!loading">বার্তা পাঠান</span>
+                                <span x-show="loading" class="flex items-center justify-center">
+                                    <i class="fas fa-spinner fa-spin mr-2"></i> পাঠানো হচ্ছে...
+                                </span>
+                            </button>
+                        </div>
+                    </form>
+                </div>
             </div>
         </section>
 
@@ -429,6 +448,39 @@
                 body: payload.notification.body
             });
         }); */
+
+        function contactForm() {
+            return {
+                name: '',
+                message: '',
+                loading: false,
+                successMessage: '',
+                errorMessage: '',
+                submitForm() {
+                    this.loading = true;
+                    this.successMessage = '';
+                    this.errorMessage = '';
+
+                    db.collection("contacts").add({
+                        name: this.name,
+                        message: this.message,
+                        submittedAt: firebase.firestore.FieldValue.serverTimestamp()
+                    })
+                    .then(() => {
+                        this.successMessage = "আপনার বার্তা সফলভাবে পাঠানো হয়েছে।";
+                        this.name = '';
+                        this.message = '';
+                    })
+                    .catch((error) => {
+                        console.error("Error adding document: ", error);
+                        this.errorMessage = "বার্তা পাঠাতে একটি সমস্যা হয়েছে। অনুগ্রহ করে আবার চেষ্টা করুন।";
+                    })
+                    .finally(() => {
+                        this.loading = false;
+                    });
+                }
+            }
+        }
     </script>
 
 </body>
