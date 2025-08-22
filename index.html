@@ -305,10 +305,96 @@
             <div class="container mx-auto px-6">
                 <div class="text-center mb-12"><h2 class="text-3xl md:text-4xl font-bold text-slate-800">সাধারণ জিজ্ঞাসা</h2><p class="text-slate-500 mt-2">আপনার প্রশ্নের উত্তরগুলো এখানে পেতে পারেন</p><div class="w-24 h-1 bg-amber-500 mx-auto mt-4"></div></div>
                 <div class="max-w-3xl mx-auto space-y-4" x-data="{ selected: null }">
-                    <div class="rounded-lg border border-slate-200"><button @click="selected = selected === 1 ? null : 1" class="w-full flex justify-between items-center text-left text-lg font-semibold p-5"><span class="text-slate-800">রেজিস্ট্রেশন ফি কত?</span><i :class="{'rotate-180': selected === 1, 'rotate-0': selected !== 1}" class="fas fa-chevron-down transition-transform duration-300"></i></button><div x-show="selected === 1" x-collapse x-transition class="p-5 pt-0 text-slate-600"><p>প্রত্যেক শিক্ষার্থীর জন্য রেজিস্ট্রেশন ফি ১২০০ টাকা নির্ধারণ করা হয়েছে। এর মধ্যে গিফট, টি-শার্ট, খাবার এবং কনসার্ট, স্টেজ ও লাইটিংসহ অন্যান্য খরচ অন্তর্ভুক্ত।</p></div></div>
-                    <div class="rounded-lg border border-slate-200"><button @click="selected = selected === 2 ? null : 2" class="w-full flex justify-between items-center text-left text-lg font-semibold p-5"><span class="text-slate-800">টাকা জমা দেওয়ার শেষ তারিখ কবে?</span><i :class="{'rotate-180': selected === 2, 'rotate-0': selected !== 2}" class="fas fa-chevron-down transition-transform duration-300"></i></button><div x-show="selected === 2" x-collapse x-transition class="p-5 pt-0 text-slate-600"><p>টাকা জমা দেওয়ার শেষ তারিখ এখনো নির্ধারিত হয়নি। আপনার নিজ নিজ বিভাগের সমন্বয়কের কাছে শীঘ্রই টাকা জমা দিন।</p></div></div>
-                    <div class="rounded-lg border border-slate-200"><button @click="selected = selected === 3 ? null : 3" class="w-full flex justify-between items-center text-left text-lg font-semibold p-5"><span class="text-slate-800">অন্য কলেজের বন্ধুরা কি বিদায় অনুষ্ঠান করতে পারবে?</span><i :class="{'rotate-180': selected === 3, 'rotate-0': selected !== 3}" class="fas fa-chevron-down transition-transform duration-300"></i></button><div x-show="selected === 3" x-collapse x-transition class="p-5 pt-0 text-slate-600"><p>দুঃখিত, এই আয়োজনটি শুধুমাত্র শহীদ বুলবুল সরকারি কলেজের এইচএসসি ২০২৬ ব্যাচের শিক্ষার্থীদের জন্য।</p></div></div>
-                </div>
+                    <div class="max-w-3xl mx-auto space-y-4" x-data="{ selected: null }">
+                        <div class="rounded-lg border border-slate-200">
+                            <button @click="selected = selected === 1 ? null : 1" class="w-full flex justify-between items-center text-left text-lg font-semibold p-5">
+                                <span class="text-slate-800">রেজিস্ট্রেশন ফি কত?</span>
+                                <i :class="{'rotate-180': selected === 1, 'rotate-0': selected !== 1}" class="fas fa-chevron-down transition-transform duration-300"></i>
+                            </button>
+                            <div x-show="selected === 1" x-collapse x-transition class="p-5 pt-0 text-slate-600">
+                                <p>প্রত্যেক শিক্ষার্থীর জন্য রেজিস্ট্রেশন ফি ১২০০ টাকা নির্ধারণ করা হয়েছে। এর মধ্যে গিফট, টি-শার্ট, খাবার এবং কনসার্ট, স্টেজ ও লাইটিংসহ অন্যান্য খরচ অন্তর্ভুক্ত।</p>
+                            </div>
+                        </div>
+
+                        <div class="rounded-lg border border-slate-200">
+                            <button @click="selected = selected === 2 ? null : 2" class="w-full flex justify-between items-center text-left text-lg font-semibold p-5">
+                                <span class="text-slate-800">টাকা জমা দেওয়ার শেষ তারিখ কবে?</span>
+                                <i :class="{'rotate-180': selected === 2, 'rotate-0': selected !== 2}" class="fas fa-chevron-down transition-transform duration-300"></i>
+                            </button>
+                            <div x-show="selected === 2" x-collapse x-transition class="p-5 pt-0 text-slate-600">
+                                <p>টাকা জমা দেওয়ার শেষ তারিখ এখনো নির্ধারিত হয়নি। আপনার নিজ নিজ বিভাগের অর্থ সংগ্রাহক এর কাছে শীঘ্রই টাকা জমা দিন।</p>
+                            </div>
+                        </div>
+
+                        <div class="rounded-lg border border-slate-200">
+                            <button @click="selected = selected === 3 ? null : 3" class="w-full flex justify-between items-center text-left text-lg font-semibold p-5">
+                                <span class="text-slate-800">অন্য কলেজের বন্ধুরা কি র‍্যাগ ডে করতে পারবে?</span>
+                                <i :class="{'rotate-180': selected === 3, 'rotate-0': selected !== 3}" class="fas fa-chevron-down transition-transform duration-300"></i>
+                            </button>
+                            <div x-show="selected === 3" x-collapse x-transition class="p-5 pt-0 text-slate-600">
+                                <p>দুঃখিত, এই আয়োজনটি শুধুমাত্র শহীদ বুলবুল সরকারি কলেজের এইচএসসি ২০২৬ ব্যাচের শিক্ষার্থীদের জন্য।</p>
+                            </div>
+                        </div>
+
+                        <div class="rounded-lg border border-slate-200">
+                            <button @click="selected = selected === 4 ? null : 4" class="w-full flex justify-between items-center text-left text-lg font-semibold p-5">
+                                <span class="text-slate-800">কোনো পোশাক কোড আছে কি?</span>
+                                <i :class="{'rotate-180': selected === 4, 'rotate-0': selected !== 4}" class="fas fa-chevron-down transition-transform duration-300"></i>
+                            </button>
+                            <div x-show="selected === 4" x-collapse x-transition class="p-5 pt-0 text-slate-600">
+                                <p>হ্যা অনুষ্ঠানের দিন সকলকে অবশ্যই নির্ধারিত কলেজ ড্রেসে থাকতে হবে এবং আয়োজকদের থেকে ছেলেদের একটি করে টি-শার্ট এবং মেয়েদের শার্ট দেওয়া হবে।</p>
+                            </div>
+                        </div>
+
+                        <div class="rounded-lg border border-slate-200">
+                            <button @click="selected = selected === 5 ? null : 5" class="w-full flex justify-between items-center text-left text-lg font-semibold p-5">
+                                <span class="text-slate-800">কোনো খাবার বা পানীয় দেওয়া হবে কি?</span>
+                                <i :class="{'rotate-180': selected === 5, 'rotate-0': selected !== 5}" class="fas fa-chevron-down transition-transform duration-300"></i>
+                            </button>
+                            <div x-show="selected === 5" x-collapse x-transition class="p-5 pt-0 text-slate-600">
+                                <p>হ্যা সকল রেজিষ্ট্রেশনকৃত ছাত্রছাত্রীদের কে মধ্যাহ্নভোজের খাবার এবং পানীয় সরবরাহ করা হবে।</p>
+                            </div>
+                        </div>
+
+                        <div class="rounded-lg border border-slate-200">
+                            <button @click="selected = selected === 6 ? null : 6" class="w-full flex justify-between items-center text-left text-lg font-semibold p-5">
+                                <span class="text-slate-800">অনুষ্ঠানে পরিবার বা অতিথি নিয়ে আসা যাবে কি?</span>
+                                <i :class="{'rotate-180': selected === 6, 'rotate-0': selected !== 6}" class="fas fa-chevron-down transition-transform duration-300"></i>
+                            </button>
+                            <div x-show="selected === 6" x-collapse x-transition class="p-5 pt-0 text-slate-600">
+                                <p>অনুষ্ঠানটি যেহেতু ছায়ান্বিত'২৬ এর রেজিষ্ট্রেশনকৃত শিক্ষার্থীদের বাহিরের অতিথি নিয়ে আসা যাবে না। শুধু গার্ডিয়ানরা আসতে পারবেন তাদের জন্য নির্দিষ্ট জায়গা থাকবে।</p>
+                            </div>
+                        </div>
+
+                        <div class="rounded-lg border border-slate-200">
+                            <button @click="selected = selected === 7 ? null : 7" class="w-full flex justify-between items-center text-left text-lg font-semibold p-5">
+                                <span class="text-slate-800">অনুষ্ঠানটির ছবি এবং ভিডিও কিভাবে পাওয়া যাবে?</span>
+                                <i :class="{'rotate-180': selected === 7, 'rotate-0': selected !== 7}" class="fas fa-chevron-down transition-transform duration-300"></i>
+                            </button>
+                            <div x-show="selected === 7" x-collapse x-transition class="p-5 pt-0 text-slate-600">
+                                <p>ফেসবুক পেজ এবং ইন্সটাগ্রাম একাউন্টে আমাদের অনুষ্ঠানটির ছবি এবং ভিডিও থাকবে। এবং ছবির জন্য আলাদা গুগল ড্রাইভ লিংক দেওয়া হবে।</p>
+                            </div>
+                        </div>
+
+                        <div class="rounded-lg border border-slate-200">
+                            <button @click="selected = selected === 8 ? null : 8" class="w-full flex justify-between items-center text-left text-lg font-semibold p-5">
+                                <span class="text-slate-800">অনুষ্ঠানের ভেন্যু কী হবে?</span>
+                                <i :class="{'rotate-180': selected === 8, 'rotate-0': selected !== 8}" class="fas fa-chevron-down transition-transform duration-300"></i>
+                            </button>
+                            <div x-show="selected === 8" x-collapse x-transition class="p-5 pt-0 text-slate-600">
+                                <p>অনুষ্ঠানের সুচনা হতে মুল ক্যাম্পাসে স্মৃতিময় মুহুর্ত কাটিয়ে মধ্যাহ্নভোজ শেষে সকলে একত্রে হেটে একটি র‍্যালি করে শহীদ বুলবুল কলেজ ২য় ক্যাম্পাসে প্রবেশ করা হবে। সেখানেই সাংস্কৃতিক প্রোগ্রাম সম্পন্ন হবে।</p>
+                            </div>
+                        </div>
+                        <div class="rounded-lg border border-slate-200">
+                            <button @click="selected = selected === 9 ? null : 9" class="w-full flex justify-between items-center text-left text-lg font-semibold p-5">
+                                <span class="text-slate-800">সুবিধাজনক বসার ব্যবস্থা আছে কি? অভিভাবক ও মেয়েদের আলাদা বসার স্থান হবে কি?</span>
+                                <i :class="{'rotate-180': selected === 9, 'rotate-0': selected !== 9}" class="fas fa-chevron-down transition-transform duration-300"></i>
+                            </button>
+                            <div x-show="selected === 9" x-collapse x-transition class="p-5 pt-0 text-slate-600">
+                                <p>পুরো অনুষ্ঠানটিতে সর্বোচ্চ সিকিউরিটির ব্যবস্থা করা হবে। মেয়েদের এবং অভিভাবকদের জন্য আলাদা নির্দিষ্ত জায়গা থাকবে।</p>
+                            </div>
+                        </div>
+                    </div>
             </div>
         </section>
 
