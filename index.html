@@ -427,7 +427,7 @@
                  <p class="text-slate-300 mt-2 mb-8">যেকোনো তথ্যের জন্য আমাদের সাথে যোগাযোগ করুন</p>
                  <div class="flex flex-col md:flex-row justify-center items-center gap-6">
                     <a href="https://m.me/chayannito26" target="_blank" class="inline-flex items-center bg-blue-600 hover:bg-blue-700 font-bold py-3 px-8 rounded-full transition-transform transform hover:scale-105 shadow-lg"><i class="fab fa-facebook-messenger mr-3"></i> মেসেঞ্জারে মেসেজ দিন</a>
-                    <a href="https://www.instagram.com/m/chayannito26" target="_blank" class="inline-flex items-center bg-fuchsia-600 hover:bg-fuchsia-700 font-bold py-3 px-8 rounded-full transition-transform transform hover:scale-105 shadow-lg"><i class="fab fa-instagram mr-3"></i> ইনস্টাগ্রামে মেসেজ দিন</a>
+                    <a id="instagram-message-link" href="https://www.instagram.com/m/chayannito26" target="_blank" class="inline-flex items-center bg-fuchsia-600 hover:bg-fuchsia-700 font-bold py-3 px-8 rounded-full transition-transform transform hover:scale-105 shadow-lg"><i class="fab fa-instagram mr-3"></i> ইনস্টাগ্রামে মেসেজ দিন</a>
                     <a href="mailto:chayannito26@gmail.com" class="inline-flex items-center bg-amber-600 hover:bg-amber-700 font-bold py-3 px-8 rounded-full transition-transform transform hover:scale-105 shadow-lg"><i class="fas fa-envelope mr-3"></i> ই-মেইল করুন</a>
                  </div>
 
@@ -595,6 +595,16 @@
                 }
             }
         }
+        // Change Instagram message link for mobile devices
+        document.addEventListener('DOMContentLoaded', function() {
+            var instaLink = document.getElementById('instagram-message-link');
+            if (instaLink) {
+                var isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+                if (isMobile) {
+                    instaLink.href = "https://www.instagram.com/chayannito26";
+                }
+            }
+        });
     </script>
 
 </body>
