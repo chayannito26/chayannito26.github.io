@@ -48,6 +48,38 @@
     gtag('config', 'G-RZZCT05D9M');
     </script>
 
+    <!-- Ensure aria-expanded matches Alpine state after initialization -->
+    <script>
+        // If Alpine is present, wait for it to initialize then sync aria-expanded
+        function syncMobileMenuAria() {
+            try {
+                var btn = document.getElementById('mobile-menu-button');
+                var menu = document.getElementById('mobile-menu');
+                if (!btn || !menu) return;
+
+                // If Alpine has already initialized, isOpen may be present on closest x-data
+                var parent = btn.closest('[x-data]');
+                if (parent && 'isOpen' in parent.__x) {
+                    btn.setAttribute('aria-expanded', parent.__x.isOpen);
+                    menu.setAttribute('aria-hidden', !parent.__x.isOpen);
+                }
+
+                // Also observe attribute changes to keep aria in sync
+                var observer = new MutationObserver(function() {
+                    var expanded = btn.getAttribute('aria-expanded');
+                    menu.setAttribute('aria-hidden', expanded !== 'true');
+                });
+                observer.observe(btn, { attributes: true, attributeFilter: ['aria-expanded'] });
+            } catch (e) {
+                // silent
+            }
+        }
+
+        // run on DOMContentLoaded and again shortly after in case Alpine initializes later
+        document.addEventListener('DOMContentLoaded', syncMobileMenuAria);
+        setTimeout(syncMobileMenuAria, 1500);
+    </script>
+
     <script type="text/javascript">
         (function(c,l,a,r,i,t,y){
             c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
@@ -63,6 +95,8 @@
     <link rel="manifest" href="/site.webmanifest">
 
     <style>
+        /* Hide Alpine-controlled elements until JS initialises */
+        [x-cloak] { display: none !important; }
         @font-face {
             font-family: 'Baloo Da 2';
             font-display: swap;
@@ -123,6 +157,11 @@
         }
     </style>
 
+    <!-- If JS is disabled, show the menu (override x-cloak) so navigation remains usable -->
+    <noscript>
+        <style>[x-cloak] { display: block !important; }</style>
+    </noscript>
+
     <script>
         function countdown() {
             return {
@@ -176,12 +215,12 @@
                 <a href="#contact" class="hover:text-red-400 transition-colors duration-300">যোগাযোগ</a>
             </nav>
             <div class="md:hidden">
-                <button aria-label="Menu" @click="isOpen = !isOpen" class="focus:outline-none">
+                <button id="mobile-menu-button" aria-label="Menu" aria-expanded="false" @click="isOpen = !isOpen; $el.setAttribute('aria-expanded', isOpen)" class="focus:outline-none">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
                 </button>
             </div>
         </div>
-        <div x-show="isOpen" @click.away="isOpen = false" class="md:hidden bg-slate-800" x-transition>
+        <div id="mobile-menu" x-cloak x-show="isOpen" @click.away="isOpen = false" class="md:hidden bg-slate-800" x-transition :aria-hidden="!isOpen">
             <a href="#home" @click="isOpen = false" class="block py-3 px-6 text-sm hover:bg-slate-700">হোম</a>
             <a href="#about-event" @click="isOpen = false" class="block py-3 px-6 text-sm hover:bg-slate-700">অনুষ্ঠান</a>
             <a href="#schedule" @click="isOpen = false" class="block py-3 px-6 text-sm hover:bg-slate-700">সূচী</a>
