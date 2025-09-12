@@ -421,6 +421,16 @@
                             </div>
                         </div>
 
+                            <div class="rounded-lg border border-slate-200">
+                                <button @click="selected = selected === 10 ? null : 10" class="w-full flex justify-between items-center text-left text-lg font-semibold p-5">
+                                    <span class="text-slate-800">কোন ব্যান্ড আনা হবে?</span>
+                                    <i :class="{'rotate-180': selected === 10, 'rotate-0': selected !== 10}" class="fas fa-chevron-down transition-transform duration-300"></i>
+                                </button>
+                                <div x-show="selected === 10" x-collapse x-transition class="p-5 pt-0 text-slate-600">
+                                    <p>রেজিস্ট্রেশনের ওপর ভিত্তি করে আমাদের ব্যান্ড নির্বাচন করা হবে। যত বেশি রেজিস্ট্রেশন তত বড় ব্যান্ড!</p>
+                                </div>
+                            </div>
+
                         <div class="rounded-lg border border-slate-200">
                             <button @click="selected = selected === 4 ? null : 4" class="w-full flex justify-between items-center text-left text-lg font-semibold p-5">
                                 <span class="text-slate-800">কোনো পোশাক কোড আছে কি?</span>
