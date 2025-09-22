@@ -24,16 +24,16 @@
     --color-fuchsia-600: oklch(59.1% 0.293 322.896);
     --color-fuchsia-700: oklch(51.8% 0.253 323.949);
     --color-pink-500: oklch(65.6% 0.241 354.308);
-    --color-slate-50: oklch(98.4% 0.003 247.858);
-    --color-slate-200: oklch(92.9% 0.013 255.508);
-    --color-slate-300: oklch(86.9% 0.022 252.894);
-    --color-slate-400: oklch(70.4% 0.04 256.788);
-    --color-slate-500: oklch(55.4% 0.046 257.417);
-    --color-slate-600: oklch(44.6% 0.043 257.281);
-    --color-slate-700: oklch(37.2% 0.044 257.287);
-    --color-slate-800: oklch(27.9% 0.041 260.031);
-    --color-slate-900: oklch(20.8% 0.042 265.755);
-    --color-slate-950: oklch(12.9% 0.042 264.695);
+    --color-slate-50: oklch(98.4% 0.008 15.0);
+    --color-slate-200: oklch(92.9% 0.018 20.0);
+    --color-slate-300: oklch(86.9% 0.032 25.0);
+    --color-slate-400: oklch(70.4% 0.055 30.0);
+    --color-slate-500: oklch(55.4% 0.065 28.0);
+    --color-slate-600: oklch(44.6% 0.058 26.0);
+    --color-slate-700: oklch(37.2% 0.055 24.0);
+    --color-slate-800: oklch(27.9% 0.048 22.0);
+    --color-slate-900: oklch(20.8% 0.045 20.0);
+    --color-slate-950: oklch(12.9% 0.042 18.0);
     --color-black: #000;
     --color-white: #fff;
     --spacing: 0.25rem;
@@ -547,7 +547,7 @@
     background-color: var(--color-slate-600);
   }
   .bg-slate-700\/50 {
-    background-color: color-mix(in srgb, oklch(37.2% 0.044 257.287) 50%, transparent);
+    background-color: color-mix(in srgb, oklch(37.2% 0.055 24.0) 50%, transparent);
     @supports (color: color-mix(in lab, red, red)) {
       background-color: color-mix(in oklab, var(--color-slate-700) 50%, transparent);
     }
@@ -556,7 +556,7 @@
     background-color: var(--color-slate-800);
   }
   .bg-slate-800\/80 {
-    background-color: color-mix(in srgb, oklch(27.9% 0.041 260.031) 80%, transparent);
+    background-color: color-mix(in srgb, oklch(27.9% 0.048 22.0) 80%, transparent);
     @supports (color: color-mix(in lab, red, red)) {
       background-color: color-mix(in oklab, var(--color-slate-800) 80%, transparent);
     }
