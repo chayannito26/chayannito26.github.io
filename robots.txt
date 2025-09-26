@@ -3,5 +3,10 @@ Disallow: /expenses
 Disallow: /income
 Disallow: /college-students
 Disallow: /verify
+Disallow /messages
+Disallow /finances
+Disallow /orders
+Disallow /event_registration_scanner
+Disallow /messages
 
 Sitemap: https://chayannito26.com/sitemap.xml
