@@ -97,6 +97,106 @@
     <style>
         /* Hide Alpine-controlled elements until JS initialises */
         [x-cloak] { display: none !important; }
+        
+        /* Preloader Styles */
+        .preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #5b1a1a 0%, #2d0d0d 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.8s ease-out, visibility 0.8s ease-out;
+        }
+        
+        .preloader.hide {
+            opacity: 0;
+            visibility: hidden;
+        }
+        
+        .preloader-content {
+            text-align: center;
+            color: white;
+        }
+        
+        .preloader-logo {
+            width: 80px;
+            height: 80px;
+            background: #475569;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 2rem;
+            animation: pulse 2s infinite;
+        }
+        
+        .preloader-logo img {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+        }
+        
+        .preloader-title {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            color: #f1f5f9;
+            letter-spacing: 0.05em;
+        }
+        
+        .preloader-subtitle {
+            font-size: 1.1rem;
+            color: #cbd5e1;
+            margin-bottom: 2rem;
+        }
+        
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 4px solid #334155;
+            border-top: 4px solid #ef4444;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto;
+        }
+        
+        .preloader-text {
+            font-size: 0.9rem;
+            color: #94a3b8;
+            margin-top: 1rem;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7); }
+            70% { transform: scale(1.05); box-shadow: 0 0 0 10px rgba(239, 68, 68, 0); }
+            100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); }
+        }
+        
+        /* Hide main content while preloader is visible */
+        body.loading header,
+        body.loading main,
+        body.loading footer {
+            opacity: 0;
+            visibility: hidden;
+        }
+        
+        /* Smooth transition for content when it appears */
+        header,
+        main,
+        footer {
+            transition: opacity 0.5s ease-in-out, visibility 0.5s ease-in-out;
+        }
         @font-face {
             font-family: 'Baloo Da 2';
             font-display: swap;
@@ -201,7 +301,20 @@
     </script>
 
 </head>
-<body class="bg-slate-50 text-slate-800">
+<body class="bg-slate-50 text-slate-800 loading">
+
+    <!-- Preloader -->
+    <div class="preloader" id="preloader">
+        <div class="preloader-content">
+            <div class="preloader-logo">
+                <img src="./images/rounded.png" alt="Logo" onerror="this.style.display='none'">
+            </div>
+            <h1 class="preloader-title">ছায়ান্বিত '২৬</h1>
+            <p class="preloader-subtitle">শহীদ বুলবুল সরকারি কলেজ, পাবনা</p>
+            <div class="spinner"></div>
+            <p class="preloader-text">লোড হচ্ছে...</p>
+        </div>
+    </div>
 
     <!-- Header -->
     <header x-data="{ isOpen: false }" class="bg-slate-800/80 backdrop-blur-sm text-white sticky top-0 z-50 shadow-lg">
@@ -678,6 +791,84 @@
                     instaLink.href = "https://www.instagram.com/chayannito26";
                 }
             }
+        });
+    </script>
+
+    <!-- Preloader Script -->
+    <script>
+        // Preloader functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const preloader = document.getElementById('preloader');
+            const body = document.body;
+            
+            // Function to hide preloader
+            function hidePreloader() {
+                // Small delay to ensure smooth transition
+                setTimeout(() => {
+                    preloader.classList.add('hide');
+                    body.classList.remove('loading');
+                    
+                    // Remove preloader from DOM after transition
+                    setTimeout(() => {
+                        if (preloader && preloader.parentNode) {
+                            preloader.parentNode.removeChild(preloader);
+                        }
+                    }, 800);
+                }, 200);
+            }
+            
+            // Track loaded resources
+            let resourcesLoaded = 0;
+            const totalResources = 3; // Alpine.js, fonts, and minimum time
+            
+            function resourceLoaded() {
+                resourcesLoaded++;
+                console.log(`Resource loaded: ${resourcesLoaded}/${totalResources}`);
+                if (resourcesLoaded >= totalResources) {
+                    hidePreloader();
+                }
+            }
+            
+            // 1. Wait for Alpine.js to be available and initialized
+            const checkAlpine = setInterval(() => {
+                if (window.Alpine) {
+                    clearInterval(checkAlpine);
+                    // Wait a bit more for Alpine to fully initialize
+                    setTimeout(() => {
+                        console.log('Alpine.js loaded');
+                        resourceLoaded();
+                    }, 300);
+                }
+            }, 50);
+            
+            // 2. Wait for fonts to load
+            if (document.fonts && document.fonts.ready) {
+                document.fonts.ready.then(() => {
+                    console.log('Fonts loaded');
+                    resourceLoaded();
+                });
+            } else {
+                // Fallback for browsers without FontFace API
+                setTimeout(() => {
+                    console.log('Fonts loaded (fallback)');
+                    resourceLoaded();
+                }, 1000);
+            }
+            
+            // 3. Minimum loading time for better UX (prevents flash)
+            setTimeout(() => {
+                console.log('Minimum time elapsed');
+                resourceLoaded();
+            }, 1000);
+            
+            // Fallback: Hide preloader after maximum 5 seconds
+            setTimeout(() => {
+                if (!preloader.classList.contains('hide')) {
+                    console.log('Preloader timeout - hiding anyway');
+                    resourcesLoaded = totalResources; // Force hide
+                    hidePreloader();
+                }
+            }, 5000);
         });
     </script>
 
