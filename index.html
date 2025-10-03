@@ -903,30 +903,56 @@
 
     <!-- Preloader Script -->
     <script>
-        // Preloader functionality
-        document.addEventListener('DOMContentLoaded', function() {
+        // Preloader functionality (robust: works even if DOMContentLoaded already fired)
+        (function() {
             const preloader = document.getElementById('preloader');
             const body = document.body;
+            if (!preloader) return;
 
-            // Function to hide preloader
+            let hidden = false;
+            let maxTimeout = null;
+
+            function removePreloaderFromDOM() {
+                if (preloader && preloader.parentNode) {
+                    preloader.parentNode.removeChild(preloader);
+                }
+            }
+
             function hidePreloader() {
+                if (hidden) return;
+                hidden = true;
+                // clear the max timeout so it doesn't fire later
+                if (maxTimeout) {
+                    clearTimeout(maxTimeout);
+                    maxTimeout = null;
+                }
+
                 // Small delay to ensure smooth transition
                 setTimeout(() => {
                     preloader.classList.add('hide');
                     body.classList.remove('loading');
 
-                    // Remove preloader from DOM after transition
-                    setTimeout(() => {
-                        if (preloader && preloader.parentNode) {
-                            preloader.parentNode.removeChild(preloader);
-                        }
-                    }, 800);
+                    // Remove preloader from DOM after transition (matches CSS transition duration)
+                    setTimeout(removePreloaderFromDOM, 800);
                 }, 200);
             }
 
-            // Track loaded resources
+            // Ensure preloader hides immediately when the full page load event fires
+            window.addEventListener('load', function() {
+                console.log('window.load -> hiding preloader');
+                hidePreloader();
+            });
+
+            // Max timeout: guarantee the preloader won't stay longer than 5s
+            maxTimeout = setTimeout(function() {
+                console.log('Preloader max timeout reached -> hiding');
+                hidePreloader();
+            }, 5000);
+
+            // Resource tracking (optional): Wait for Alpine, fonts and a short minimum time
+            // This will hide earlier if all three conditions meet before the 5s max.
             let resourcesLoaded = 0;
-            const totalResources = 3; // Alpine.js, fonts, and minimum time
+            const totalResources = 3; // Alpine.js, fonts, minimum time
 
             function resourceLoaded() {
                 resourcesLoaded++;
@@ -936,47 +962,54 @@
                 }
             }
 
-            // 1. Wait for Alpine.js to be available and initialized
+            // 1) Alpine availability (check briefly, but don't block forever)
             const checkAlpine = setInterval(() => {
                 if (window.Alpine) {
                     clearInterval(checkAlpine);
-                    // Wait a bit more for Alpine to fully initialize
+                    // allow a short window for Alpine to initialize
                     setTimeout(() => {
-                        console.log('Alpine.js loaded');
+                        console.log('Alpine available');
                         resourceLoaded();
-                    }, 300);
+                    }, 200);
                 }
             }, 50);
 
-            // 2. Wait for fonts to load
+            // 2) Fonts loading
             if (document.fonts && document.fonts.ready) {
                 document.fonts.ready.then(() => {
-                    console.log('Fonts loaded');
+                    console.log('Fonts ready');
+                    resourceLoaded();
+                }).catch(() => {
+                    // In case of error, don't block forever
+                    console.log('Fonts ready rejected/fallback');
                     resourceLoaded();
                 });
             } else {
-                // Fallback for browsers without FontFace API
+                // fallback
                 setTimeout(() => {
-                    console.log('Fonts loaded (fallback)');
+                    console.log('Fonts fallback');
                     resourceLoaded();
                 }, 1000);
             }
 
-            // 3. Minimum loading time for better UX (prevents flash)
+            // 3) Minimum display time to avoid flash
             setTimeout(() => {
-                console.log('Minimum time elapsed');
+                console.log('Minimum display time elapsed');
                 resourceLoaded();
-            }, 1000);
+            }, 800);
 
-            // Fallback: Hide preloader after maximum 5 seconds
-            setTimeout(() => {
-                if (!preloader.classList.contains('hide')) {
-                    console.log('Preloader timeout - hiding anyway');
-                    resourcesLoaded = totalResources; // Force hide
-                    hidePreloader();
-                }
-            }, 5000);
-        });
+            // If DOM is already ready, start immediately; otherwise wait for DOMContentLoaded
+            function startWhenReady() {
+                // nothing needed now because logic above already runs; this ensures compatibility
+            }
+
+            if (document.readyState === 'complete' || document.readyState === 'interactive') {
+                // DOM is ready, nothing to wait for — leave resource checks running
+                startWhenReady();
+            } else {
+                document.addEventListener('DOMContentLoaded', startWhenReady);
+            }
+        })();
     </script>
 
 </body>
