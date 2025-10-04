@@ -275,7 +275,7 @@
                 hours: '00',
                 minutes: '00',
                 seconds: '00',
-                targetDate: new Date('2025-11-28T00:00:00'),
+                targetDate: new Date('2025-12-02T09:00:00'),
                 init() {
                     this.update();
                     setInterval(() => {
@@ -434,10 +434,15 @@
             </div>
             <nav class="hidden md:flex space-x-6 items-center text-sm">
                 <a href="#home" class="hover:text-red-400 transition-colors duration-300">হোম</a>
-                <a href="#about-event" class="hover:text-red-400 transition-colors duration-300">অনুষ্ঠান</a>
-                <a href="#schedule" class="hover:text-red-400 transition-colors duration-300">সূচী</a>
+                <a href="#about-event" class="hover:text-red-400 transition-colors duration-300">অনুষ্ঠান সম্পর্কে</a>
+                <a href="#announcements" class="hover:text-red-400 transition-colors duration-300">ঘোষণাসমূহ</a>
+                <a href="#student-count" class="hover:text-red-400 transition-colors duration-300">ছাত্র সংখ্যা</a>
+                <a href="#schedule" class="hover:text-red-400 transition-colors duration-300">অনুষ্ঠান সূচী</a>
+                <!-- <a href="#gallery" class="hover:text-red-400 transition-colors duration-300">গ্যালারি</a> -->
                 <a href="#payment-coordinators" class="hover:text-red-400 transition-colors duration-300">অর্থ সংগ্রাহক</a>
-                <a href="#faq" class="hover:text-red-400 transition-colors duration-300">জিজ্ঞাসা</a>
+                <!-- <a href="#register-now" class="hover:text-red-400 transition-colors duration-300">রেজিস্ট্রেশন</a> -->
+                <a href="#about-college" class="hover:text-red-400 transition-colors duration-300">কলেজ সম্পর্কে</a>
+                <a href="#faq" class="hover:text-red-400 transition-colors duration-300">প্রশ্নের উত্তর</a>
                 <a href="#contact" class="hover:text-red-400 transition-colors duration-300">যোগাযোগ</a>
             </nav>
             <div class="md:hidden">
@@ -448,10 +453,15 @@
         </div>
         <div id="mobile-menu" x-cloak x-show="isOpen" @click.away="isOpen = false" class="md:hidden bg-slate-800" x-transition :aria-hidden="!isOpen">
             <a href="#home" @click="isOpen = false" class="block py-3 px-6 text-sm hover:bg-slate-700">হোম</a>
-            <a href="#about-event" @click="isOpen = false" class="block py-3 px-6 text-sm hover:bg-slate-700">অনুষ্ঠান</a>
-            <a href="#schedule" @click="isOpen = false" class="block py-3 px-6 text-sm hover:bg-slate-700">সূচী</a>
+            <a href="#about-event" @click="isOpen = false" class="block py-3 px-6 text-sm hover:bg-slate-700">অনুষ্ঠান সম্পর্কে</a>
+            <a href="#announcements" @click="isOpen = false" class="block py-3 px-6 text-sm hover:bg-slate-700">ঘোষণাসমূহ</a>
+            <a href="#student-count" @click="isOpen = false" class="block py-3 px-6 text-sm hover:bg-slate-700">ছাত্র সংখ্যা</a>
+            <a href="#schedule" @click="isOpen = false" class="block py-3 px-6 text-sm hover:bg-slate-700">অনুষ্ঠান সূচী</a>
+            <!-- <a href="#gallery" @click="isOpen = false" class="block py-3 px-6 text-sm hover:bg-slate-700">গ্যালারি</a> -->
             <a href="#payment-coordinators" @click="isOpen = false" class="block py-3 px-6 text-sm hover:bg-slate-700">অর্থ সংগ্রাহক</a>
-            <a href="#faq" @click="isOpen = false" class="block py-3 px-6 text-sm hover:bg-slate-700">জিজ্ঞাসা</a>
+            <!-- <a href="#register-now" @click="isOpen = false" class="block py-3 px-6 text-sm hover:bg-slate-700">রেজিস্ট্রেশন</a> -->
+            <a href="#about-college" @click="isOpen = false" class="block py-3 px-6 text-sm hover:bg-slate-700">কলেজ সম্পর্কে</a>
+            <a href="#faq" @click="isOpen = false" class="block py-3 px-6 text-sm hover:bg-slate-700">প্রশ্নের উত্তর</a>
             <a href="#contact" @click="isOpen = false" class="block py-3 px-6 text-sm hover:bg-slate-700">যোগাযোগ</a>
         </div>
     </header>
@@ -498,8 +508,8 @@
                     <div class="w-24 h-1 bg-red-500 mx-auto mt-4"></div>
                 </div>
                 <div class="max-w-4xl mx-auto text-slate-600 text-base md:text-lg leading-relaxed space-y-6 text-center">
-                    <p>কলেজ জীবনের শেষ মুহূর্তে স্নাতক (এইচএসসি) পরীক্ষার্থীদের জন্য বিশেষ বিদায় অনুষ্ঠান আয়োজন করা হয়ে থাকে। আমাদের ব্যাচের নাম ‘ছায়ান্বিত ’২৬’। ‘ছায়ান্বিত’ শব্দটির অর্থ ‘ছায়ায় আবৃত’ বা ‘ছায়ার মতো’ – এর মাধ্যমে বোঝানো হয়েছে যে, কলেজ জীবনের স্মৃতিময় অধ্যায়টি ছায়ার মতো আমাদের পরিচয় ও বন্ধনে চিরকাল জড়িয়ে থাকবে।</p>
-                    <p>এই বিদায় অনুষ্ঠানের মাধ্যমে আমরা শুধুমাত্র বন্ধুদের বিদায় জানাচ্ছি না, বরং কলেজ ইতিহাসে আমাদের ব্যাচের একটি স্মরণীয় অধ্যায় যুক্ত করছি। অনুষ্ঠানটি শিক্ষাজীবনের সমাপ্তি ও নতুন জীবনের সূচনার এক মেলবন্ধন, যা আমাদের স্মৃতির পাতায় চিরস্মরণীয় হয়ে থাকবে।</p>
+                    <p>কলেজ জীবনের শেষ মুহূর্তে স্নাতক (এইচএসসি) পরীক্ষার্থীরা তাদের জন্য বিশেষ একটি বিদায় অনুষ্ঠান আয়োজন করে থাকে। আমাদের ব্যাচের নাম আমরা দিয়েছি ‘ছায়ান্বিত ’২৬’। ‘ছায়ান্বিত’ শব্দটির অর্থ ‘ছায়ায় আবৃত’ বা ‘ছায়ার মতো’ - এর মাধ্যমে বোঝানো হয়েছে যে, কলেজ জীবনের স্মৃতিময় অধ্যায়টি ছায়ার মতো আমাদের পরিচয় ও বন্ধনে চিরকাল আবৃত হয়ে থাকবে।</p>
+                    <p>এই বিদায় অনুষ্ঠানের মাধ্যমে আমরা শুধুমাত্র বন্ধুদের বিদায় জানাচ্ছি না, বরং কলেজ ইতিহাসে আমাদের ব্যাচের একটি স্মরণীয় অধ্যায় যুক্ত করছি। অনুষ্ঠানটি কলেজজীবনের সমাপ্তি ও নতুন জীবনের সূচনার এক মেলবন্ধন, যা আমাদের স্মৃতির পাতায় চিরস্মরণীয় হয়ে থাকবে।</p>
                 </div>
             </div>
         </section>
@@ -509,6 +519,7 @@
             <div class="container mx-auto px-6">
                 <div class="text-center mb-12"><h2 class="text-3xl md:text-4xl font-bold text-slate-800">গুরুত্বপূর্ণ ঘোষণাসমূহ</h2><p class="text-slate-500 mt-2">সর্বশেষ আপডেট ও খবর</p><div class="w-24 h-1 bg-red-500 mx-auto mt-4"></div></div>
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="bg-white rounded-lg shadow-lg overflow-hidden group"><div class="video-container rounded-t-lg"><iframe src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2Freel%2F1401569058192109&width=560&show_text=true&height=315&appId" width="500" height="437" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe></div><div class="p-6"><h3 class="text-xl font-bold mb-2 text-slate-700">আমাদের একটি ব্যানার উন্মচনির জন্যে বানানো ভিডিও</h3><p class="text-slate-600 text-sm leading-relaxed">আমাদের অনুষ্ঠানের জন্যে তৈরি করা হয়েছে একটি বিশেষ ব্যানার। ভিডিওটির মাধ্যমে ব্যানার উন্মোচনের মুহূর্তটি আপনাদের সাথে ভাগ করে নিচ্ছি 🎉</p></div></div>
                     <div class="bg-white rounded-lg shadow-lg overflow-hidden group"><div class="video-container rounded-t-lg"><iframe src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2Freel%2F791686873504173%2F%3Fs%3Dsingle_unit&width=560&show_text=true&height=315&appId" width="500" height="437" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe></div><div class="p-6"><h3 class="text-xl font-bold mb-2 text-slate-700">আমাদের একটি প্রোমো ভিডিও</h3><p class="text-slate-600 text-sm leading-relaxed">তৈরি করা হয়েছে একটি বিশেষ প্রোমো ভিডিও। ভিডিওটি দেখুন এবং বন্ধুদের সাথে শেয়ার করুন।</p></div></div>
                     <!-- <div class="bg-white rounded-lg shadow-lg overflow-hidden group"><div class="video-container rounded-t-lg"><iframe width="560" height="315" src="https://www.youtube.com/embed/ZherEGM0Mww?si=1xR0DQa2FReZUNvP" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div><div class="p-6"><h3 class="text-xl font-bold mb-2 text-slate-700">আমাদের একটি প্রোমো ভিডিও</h3><p class="text-slate-600 text-sm leading-relaxed">তৈরি করা হয়েছে একটি বিশেষ প্রোমো ভিডিও। ভিডিওটি দেখুন এবং বন্ধুদের সাথে শেয়ার করুন।</p></div></div> -->
                     <div class="bg-white rounded-lg shadow-lg overflow-hidden group announcement-card"><img src="./images/coupons.webp" alt="Registration open graphic" class="w-full h-56 object-cover group-hover:opacity-90 transition-opacity"><div class="p-6"><h3 class="text-xl font-bold mb-1 text-slate-700">✨রেজিস্ট্রেশন শুরু হয়েছে! ✨</h3><time datetime="2025-09-10" class="announcement-meta">ঘোষণা: ১০ সেপ্টেম্বর ২০২৫</time><p class="text-slate-600 text-sm leading-relaxed">ছায়ান্বিত ‘২৬ ব্যাচের বিদায় অনুষ্ঠানের রেজিস্ট্রেশন এখন চলছে। দ্রুত আপনার বিভাগের নির্ধারিত অর্থ সংগ্রাহকের সাথে যোগাযোগ করে রেজিস্ট্রেশন সম্পন্ন করুন❗</p></div></div>
@@ -518,7 +529,7 @@
         </section>
 
         <!-- Student Count Section with CounterUp2 -->
-        <section class="py-16 md:py-20 bg-slate-800 text-white">
+        <section id="student-count" class="py-16 md:py-20 bg-slate-800 text-white">
             <div class="container mx-auto px-6">
                 <div class="text-center mb-12"><h2 class="text-3xl md:text-4xl font-bold">এক নজরে আমরা</h2><p class="text-slate-300 mt-2">ছায়ান্বিত ’২৬ ব্যাচের শিক্ষার্থী সংখ্যা</p><div class="w-24 h-1 bg-red-500 mx-auto mt-4"></div></div>
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 text-center">
@@ -609,7 +620,7 @@
         <!-- FAQ Section -->
         <section id="faq" class="py-16 md:py-24 bg-white">
             <div class="container mx-auto px-6">
-                <div class="text-center mb-12"><h2 class="text-3xl md:text-4xl font-bold text-slate-800">সাধারণ জিজ্ঞাসা</h2><p class="text-slate-500 mt-2">আপনার প্রশ্নের উত্তরগুলো এখানে পেতে পারেন</p><div class="w-24 h-1 bg-red-500 mx-auto mt-4"></div></div>
+                <div class="text-center mb-12"><h2 class="text-3xl md:text-4xl font-bold text-slate-800">সাধারণ প্রশ্নের উত্তর</h2><p class="text-slate-500 mt-2">আপনার প্রশ্নের উত্তরগুলো এখানে পেতে পারেন</p><div class="w-24 h-1 bg-red-500 mx-auto mt-4"></div></div>
                 <div class="max-w-3xl mx-auto space-y-4" x-data="{ selected: null }">
                     <div class="max-w-3xl mx-auto space-y-4" x-data="{ selected: null }">
                         <div class="rounded-lg border border-slate-200">
@@ -634,7 +645,7 @@
 
                         <div class="rounded-lg border border-slate-200">
                             <button @click="selected = selected === 3 ? null : 3" class="w-full flex justify-between items-center text-left text-lg font-semibold p-5">
-                                <span class="text-slate-800">অন্য কলেজের বন্ধুরা কি র‍্যাগ ডে করতে পারবে?</span>
+                                <span class="text-slate-800">অন্য কলেজের বন্ধুরা কি বিদায় অনুষ্ঠান করতে পারবে?</span>
                                 <i :class="{'rotate-180': selected === 3, 'rotate-0': selected !== 3}" class="fas fa-chevron-down transition-transform duration-300"></i>
                             </button>
                             <div x-show="selected === 3" x-collapse x-transition class="p-5 pt-0 text-slate-600">
@@ -658,7 +669,7 @@
                                 <i :class="{'rotate-180': selected === 4, 'rotate-0': selected !== 4}" class="fas fa-chevron-down transition-transform duration-300"></i>
                             </button>
                             <div x-show="selected === 4" x-collapse x-transition class="p-5 pt-0 text-slate-600">
-                                <p>হ্যা অনুষ্ঠানের দিন সকলকে অবশ্যই নির্ধারিত কলেজ ড্রেসে থাকতে হবে এবং আয়োজকদের থেকে ছেলেদের একটি করে টি-শার্ট এবং মেয়েদের শার্ট দেওয়া হবে।</p>
+                                <p>হ্যা অনুষ্ঠানের দিন সকলকে অবশ্যই নির্ধারিত কলেজ ড্রেসে থাকতে হবে এবং আয়োজকদের থেকে ছেলেদের একটি করে টি-শার্ট এবং মেয়েদের বোতামওয়ালা শার্ট দেওয়া হবে।</p>
                             </div>
                         </div>
 
@@ -757,7 +768,10 @@
         <div class="container mx-auto px-6 text-center">
             <p class="font-semibold text-lg mb-2 text-white">ছায়ান্বিত ’২৬</p>
             <p class="text-sm">শহীদ বুলবুল সরকারি কলেজ, পাবনা | এইচএসসি ২০২৬ ব্যাচ</p>
-            <div class="mt-4"><p class="text-xs">&copy; ২০২৫ | সকল স্বত্ব সংরক্ষিত</p></div>
+            <div><p class="text-xs">&copy; ২০২৫ | সকল স্বত্ব সংরক্ষিত</p></div>
+            <div class="mt-4">
+                <p class="text-xs text-slate-500" aria-label="site credit">Website designed by <a href="https://www.facebook.com/wasimaster/" target="_blank" class="font-medium text-slate-300">Arian Mollik Wasi</a></p>
+            </div>
         </div>
     </footer>
 
