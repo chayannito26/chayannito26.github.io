@@ -636,6 +636,16 @@
                         </div>
 
                         <div class="rounded-lg border border-slate-200">
+                            <button @click="selected = selected === 11 ? null : 11" class="w-full flex justify-between items-center text-left text-lg font-semibold p-5">
+                                <span class="text-slate-800">বিদায় অনুষ্ঠান কবে?</span>
+                                <i :class="{'rotate-180': selected === 11, 'rotate-0': selected !== 11}" class="fas fa-chevron-down transition-transform duration-300"></i>
+                            </button>
+                            <div x-show="selected === 11" x-collapse x-transition class="p-5 pt-0 text-slate-600">
+                                <p>সম্ভাব্য তারিখ ২ ডিসেম্বর, তবে এখনও চূড়ান্তভাবে নিশ্চিত করা হয়নি।</p>
+                            </div>
+                        </div>
+
+                        <div class="rounded-lg border border-slate-200">
                             <button @click="selected = selected === 2 ? null : 2" class="w-full flex justify-between items-center text-left text-lg font-semibold p-5">
                                 <span class="text-slate-800">টাকা জমা দেওয়ার শেষ তারিখ কবে?</span>
                                 <i :class="{'rotate-180': selected === 2, 'rotate-0': selected !== 2}" class="fas fa-chevron-down transition-transform duration-300"></i>
