@@ -4,11 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chayannito 26 | Shahid Bulbul Govt. College, Pabna</title>
-    <meta name="description" content="Shahid Bulbul Govt. College, Pabna - Information about the farewell event of Chayannito 26 batch, schedule, who can register, and much more.">
-    <meta name="keywords" content="Chayannito 26, Chayannito, Shahid Bulbul Govt. College, Pabna, HSC batch 26, farewell event, college event">
+    <meta name="description" content="Shahid Bulbul Govt. College, Pabna - Information about the Chayannito 26 farewell event, full schedule, band lineup featuring AvoidRafa, Karnival, and Dark Slayer, registration details, and more.">
+    <meta name="keywords" content="Chayannito 26, Chayannito, Shahid Bulbul Govt. College, Pabna, HSC batch 26, farewell event, college event, AvoidRafa, Karnival, Dark Slayer, concert lineup">
     <!-- Open Graph -->
     <meta property="og:title" content="Chayannito 26 | Shahid Bulbul Govt. College, Pabna">
-    <meta property="og:description" content="Shahid Bulbul Govt. College, Pabna - Information about the farewell event of Chayannito 26 batch, schedule, who can register, and much more.">
+    <meta property="og:description" content="Shahid Bulbul Govt. College, Pabna - Discover the Chayannito 26 farewell celebration with the full band lineup of AvoidRafa, Karnival, and Dark Slayer, plus registration info and schedule.">
     <meta property="og:image" content="https://chayannito26.com/images/logo.jpg">
     <meta property="og:url" content="https://chayannito26.com">
     <meta property="og:type" content="website">
@@ -18,7 +18,10 @@
     <!-- Twitter Cards -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Chayannito 26 | Shahid Bulbul Govt. College, Pabna">
-    <meta name="twitter:description" content="Shahid Bulbul Govt. College, Pabna - Information about the farewell event of Chayannito 26 batch, schedule, who can register, and much more.">
+    <meta name="twitter:description" content="Shahid Bulbul Govt. College, Pabna - Get details on the Chayannito 26 farewell, including AvoidRafa, Karnival, Dark Slayer, full schedule, and registration.">
+    <meta property="og:see_also" content="https://www.facebook.com/AvoidRafa">
+    <meta property="og:see_also" content="https://www.facebook.com/Karnivalofficialband">
+    <meta property="og:see_also" content="https://www.facebook.com/darkslayer369">
     <meta name="twitter:image" content="https://chayannito26.com/images/logo.jpg">
     <meta name="twitter:site" content="@chayannito26">
     <meta name="twitter:creator" content="@wasi_master">
@@ -261,6 +264,18 @@
         .announcement-card h3 { font-size: 1.125rem; margin-bottom: 0.375rem; }
         .announcement-meta { font-size: 0.775rem; color: #94a3b8; margin-bottom: 0.6rem; display: block; }
         .announcement-card img { height: 14rem; object-fit: cover; }
+
+        /* Band lineup layout adjustments */
+        .band-lineup-grid {
+            max-width: 72rem;
+            margin: 0 auto;
+        }
+        @media (min-width: 768px) {
+            .band-lineup-grid {
+                grid-template-columns: repeat(3, minmax(0, 1fr));
+                align-items: stretch;
+            }
+        }
     </style>
 
     <!-- If JS is disabled, show the menu (override x-cloak) so navigation remains usable -->
@@ -329,9 +344,96 @@
         },
         "performer": [
             {
-                "@type": "Person",
+                "@type": "MusicGroup",
+                "@id": "https://chayannito26.com/#performer-avoidrafa",
                 "name": "AvoidRafa",
-                "sameAs": "https://www.facebook.com/avoidrafa"
+                "alternateName": "AvoidRafa - Main Band",
+                "description": "AvoidRafa headlines the Chayannito 26 concert night with a national rock showcase.",
+                "image": "https://chayannito26.com/images/avoidrafa_logo.jpg",
+                "genre": ["Alternative Rock", "Bangladeshi Rock"],
+                "sameAs": [
+                    "https://www.facebook.com/AvoidRafa"
+                ],
+                "areaServed": {
+                    "@type": "Country",
+                    "name": "Bangladesh"
+                }
+            },
+            {
+                "@type": "MusicGroup",
+                "@id": "https://chayannito26.com/#performer-karnival",
+                "name": "Karnival",
+                "alternateName": "Karnival - Secondary Band",
+                "description": "Karnival delivers progressive rock energy as the secondary national act for the evening.",
+                "image": "https://chayannito26.com/images/karnival_logo.jpg",
+                "genre": ["Progressive Rock", "Bangladeshi Rock"],
+                "sameAs": [
+                    "https://www.facebook.com/Karnivalofficialband"
+                ],
+                "areaServed": {
+                    "@type": "Country",
+                    "name": "Bangladesh"
+                }
+            },
+            {
+                "@type": "MusicGroup",
+                "@id": "https://chayannito26.com/#performer-darkslayer",
+                "name": "Dark Slayer",
+                "alternateName": "Dark Slayer - Local Band",
+                "description": "Local outfit Dark Slayer opens the concert segment with hometown passion and heavy riffs.",
+                "image": "https://chayannito26.com/images/dark_slayer_logo.jpg",
+                "genre": ["Rock", "Alternative"],
+                "sameAs": [
+                    "https://www.facebook.com/darkslayer369"
+                ],
+                "areaServed": {
+                    "@type": "City",
+                    "name": "Pabna"
+                }
+            }
+        ],
+        "subEvent": [
+            {
+                "@type": "MusicEvent",
+                "@id": "https://chayannito26.com/#music-main",
+                "name": "AvoidRafa Live Performance",
+                "startDate": "2025-11-28T20:00:00+06:00",
+                "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+                "eventStatus": "https://schema.org/EventScheduled",
+                "location": {
+                    "@id": "https://chayannito26.com/#venue"
+                },
+                "performer": {
+                    "@id": "https://chayannito26.com/#performer-avoidrafa"
+                }
+            },
+            {
+                "@type": "MusicEvent",
+                "@id": "https://chayannito26.com/#music-secondary",
+                "name": "Karnival Live Performance",
+                "startDate": "2025-11-28T19:30:00+06:00",
+                "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+                "eventStatus": "https://schema.org/EventScheduled",
+                "location": {
+                    "@id": "https://chayannito26.com/#venue"
+                },
+                "performer": {
+                    "@id": "https://chayannito26.com/#performer-karnival"
+                }
+            },
+            {
+                "@type": "MusicEvent",
+                "@id": "https://chayannito26.com/#music-local",
+                "name": "Dark Slayer Live Performance",
+                "startDate": "2025-11-28T19:00:00+06:00",
+                "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+                "eventStatus": "https://schema.org/EventScheduled",
+                "location": {
+                    "@id": "https://chayannito26.com/#venue"
+                },
+                "performer": {
+                    "@id": "https://chayannito26.com/#performer-darkslayer"
+                }
             }
         ],
         "organizer": {
@@ -438,6 +540,7 @@
                 <a href="#announcements" class="hover:text-red-400 transition-colors duration-300">ঘোষণাসমূহ</a>
                 <a href="#student-count" class="hover:text-red-400 transition-colors duration-300">ছাত্র সংখ্যা</a>
                 <a href="#schedule" class="hover:text-red-400 transition-colors duration-300">অনুষ্ঠান সূচী</a>
+                <a href="#band-lineup" class="hover:text-red-400 transition-colors duration-300">ব্যান্ড লাইনআপ</a>
                 <!-- <a href="#gallery" class="hover:text-red-400 transition-colors duration-300">গ্যালারি</a> -->
                 <a href="#payment-coordinators" class="hover:text-red-400 transition-colors duration-300">অর্থ সংগ্রাহক</a>
                 <!-- <a href="#register-now" class="hover:text-red-400 transition-colors duration-300">রেজিস্ট্রেশন</a> -->
@@ -457,6 +560,7 @@
             <a href="#announcements" @click="isOpen = false" class="block py-3 px-6 text-sm hover:bg-slate-700">ঘোষণাসমূহ</a>
             <a href="#student-count" @click="isOpen = false" class="block py-3 px-6 text-sm hover:bg-slate-700">ছাত্র সংখ্যা</a>
             <a href="#schedule" @click="isOpen = false" class="block py-3 px-6 text-sm hover:bg-slate-700">অনুষ্ঠান সূচী</a>
+            <a href="#band-lineup" @click="isOpen = false" class="block py-3 px-6 text-sm hover:bg-slate-700">ব্যান্ড লাইনআপ</a>
             <!-- <a href="#gallery" @click="isOpen = false" class="block py-3 px-6 text-sm hover:bg-slate-700">গ্যালারি</a> -->
             <a href="#payment-coordinators" @click="isOpen = false" class="block py-3 px-6 text-sm hover:bg-slate-700">অর্থ সংগ্রাহক</a>
             <!-- <a href="#register-now" @click="isOpen = false" class="block py-3 px-6 text-sm hover:bg-slate-700">রেজিস্ট্রেশন</a> -->
@@ -651,6 +755,61 @@
                             <p class="text-slate-500 mt-1">প্রধান ব্যান্ডের আকর্ষণীয় কনসার্ট দিয়ে অনুষ্ঠান সমাপ্ত হবে।</p>
                         </div>
                     </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Band Lineup Section -->
+        <section id="band-lineup" class="py-16 md:py-24 section-gradient">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold text-slate-800">ব্যান্ড লাইনআপ</h2>
+                    <p class="text-slate-500 mt-2">কনসার্ট নাইটে মঞ্চ মাতাবে যেসব ব্যান্ড</p>
+                    <div class="w-24 h-1 bg-red-500 mx-auto mt-4"></div>
+                </div>
+                <div class="grid grid-cols-1 band-lineup-grid gap-8">
+                    <article class="bg-white border border-slate-100 rounded-2xl shadow-xl overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl">
+                        <div class="bg-slate-100 flex items-center justify-center">
+                            <img src="./images/avoidrafa_logo.jpg" alt="AvoidRafa band logo" class="w-full h-48 object-contain p-6" loading="lazy">
+                        </div>
+                        <div class="p-6 text-center space-y-3">
+                            <h3 class="text-2xl font-bold text-slate-800">AvoidRafa</h3>
+                            <p class="text-red-500 font-semibold uppercase tracking-wide text-sm">Main Band</p>
+                            <p class="text-slate-600 text-sm md:text-base">জাতীয় পর্যায়ের রক ব্যান্ড AvoidRafa প্রধান আকর্ষণ হিসেবে চূড়ান্ত পারফরমেন্স উপহার দেবে।</p>
+                            <a href="https://www.facebook.com/share/p/1DazyE1uxs/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-2 text-blue-600 font-semibold hover:text-blue-700" aria-label="AvoidRafa announcement on Facebook">
+                                <i class="fab fa-facebook-f"></i>
+                                <span>Facebook Post</span>
+                            </a>
+                        </div>
+                    </article>
+                    <article class="bg-white border border-slate-100 rounded-2xl shadow-xl overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl">
+                        <div class="bg-slate-100 flex items-center justify-center">
+                            <img src="./images/karnival_logo.jpg" alt="Karnival band logo" class="w-full h-48 object-contain p-6" loading="lazy">
+                        </div>
+                        <div class="p-6 text-center space-y-3">
+                            <h3 class="text-2xl font-bold text-slate-800">Karnival</h3>
+                            <p class="text-red-500 font-semibold uppercase tracking-wide text-sm">Secondary Band</p>
+                            <p class="text-slate-600 text-sm md:text-base">সমসাময়িক রক সাউন্ড নিয়ে Karnival দ্বিতীয় প্রধান ব্যান্ড হিসেবে মঞ্চে উত্তাপ ছড়াবে।</p>
+                            <a href="https://www.facebook.com/Karnivalofficialband" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-2 text-blue-600 font-semibold hover:text-blue-700" aria-label="Karnival on Facebook">
+                                <i class="fab fa-facebook-f"></i>
+                                <span>Facebook</span>
+                            </a>
+                        </div>
+                    </article>
+                    <article class="bg-white border border-slate-100 rounded-2xl shadow-xl overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl">
+                        <div class="bg-slate-100 flex items-center justify-center">
+                            <img src="./images/dark_slayer_logo.jpg" alt="Dark Slayer band logo" class="w-full h-48 object-contain p-6" loading="lazy">
+                        </div>
+                        <div class="p-6 text-center space-y-3">
+                            <h3 class="text-2xl font-bold text-slate-800">Dark Slayer</h3>
+                            <p class="text-red-500 font-semibold uppercase tracking-wide text-sm">Local Band</p>
+                            <p class="text-slate-600 text-sm md:text-base">পাবনা অঞ্চলের উদীয়মান ব্যান্ড Dark Slayer স্থানীয় স্বাদে উদ্যমী লাইভ সেশন পরিবেশন করবে।</p>
+                            <a href="https://www.facebook.com/darkslayer369" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-2 text-blue-600 font-semibold hover:text-blue-700" aria-label="Dark Slayer on Facebook">
+                                <i class="fab fa-facebook-f"></i>
+                                <span>Facebook</span>
+                            </a>
+                        </div>
+                    </article>
                 </div>
             </div>
         </section>
