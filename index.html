@@ -290,7 +290,7 @@
                 hours: '00',
                 minutes: '00',
                 seconds: '00',
-                targetDate: new Date('2025-12-02T09:00:00'),
+                targetDate: new Date('2026-03-24T15:00:00'),
                 init() {
                     this.update();
                     setInterval(() => {
@@ -537,10 +537,10 @@
             <nav class="hidden md:flex space-x-6 items-center text-sm">
                 <a href="#home" class="hover:text-red-400 transition-colors duration-300">হোম</a>
                 <a href="#about-event" class="hover:text-red-400 transition-colors duration-300">অনুষ্ঠান সম্পর্কে</a>
-                <a href="#announcements" class="hover:text-red-400 transition-colors duration-300">ঘোষণাসমূহ</a>
+                <!-- <a href="#announcements" class="hover:text-red-400 transition-colors duration-300">ঘোষণাসমূহ</a> -->
                 <a href="#student-count" class="hover:text-red-400 transition-colors duration-300">ছাত্র সংখ্যা</a>
                 <a href="#schedule" class="hover:text-red-400 transition-colors duration-300">অনুষ্ঠান সূচী</a>
-                <a href="#band-lineup" class="hover:text-red-400 transition-colors duration-300">ব্যান্ড লাইনআপ</a>
+                <!-- <a href="#band-lineup" class="hover:text-red-400 transition-colors duration-300">ব্যান্ড লাইনআপ</a> -->
                 <!-- <a href="#gallery" class="hover:text-red-400 transition-colors duration-300">গ্যালারি</a> -->
                 <a href="#payment-coordinators" class="hover:text-red-400 transition-colors duration-300">অর্থ সংগ্রাহক</a>
                 <!-- <a href="#register-now" class="hover:text-red-400 transition-colors duration-300">রেজিস্ট্রেশন</a> -->
@@ -557,10 +557,10 @@
         <div id="mobile-menu" x-cloak x-show="isOpen" @click.away="isOpen = false" class="md:hidden bg-slate-800" x-transition :aria-hidden="!isOpen">
             <a href="#home" @click="isOpen = false" class="block py-3 px-6 text-sm hover:bg-slate-700">হোম</a>
             <a href="#about-event" @click="isOpen = false" class="block py-3 px-6 text-sm hover:bg-slate-700">অনুষ্ঠান সম্পর্কে</a>
-            <a href="#announcements" @click="isOpen = false" class="block py-3 px-6 text-sm hover:bg-slate-700">ঘোষণাসমূহ</a>
+            <!-- <a href="#announcements" @click="isOpen = false" class="block py-3 px-6 text-sm hover:bg-slate-700">ঘোষণাসমূহ</a> -->
             <a href="#student-count" @click="isOpen = false" class="block py-3 px-6 text-sm hover:bg-slate-700">ছাত্র সংখ্যা</a>
             <a href="#schedule" @click="isOpen = false" class="block py-3 px-6 text-sm hover:bg-slate-700">অনুষ্ঠান সূচী</a>
-            <a href="#band-lineup" @click="isOpen = false" class="block py-3 px-6 text-sm hover:bg-slate-700">ব্যান্ড লাইনআপ</a>
+            <!-- <a href="#band-lineup" @click="isOpen = false" class="block py-3 px-6 text-sm hover:bg-slate-700">ব্যান্ড লাইনআপ</a> -->
             <!-- <a href="#gallery" @click="isOpen = false" class="block py-3 px-6 text-sm hover:bg-slate-700">গ্যালারি</a> -->
             <a href="#payment-coordinators" @click="isOpen = false" class="block py-3 px-6 text-sm hover:bg-slate-700">অর্থ সংগ্রাহক</a>
             <!-- <a href="#register-now" @click="isOpen = false" class="block py-3 px-6 text-sm hover:bg-slate-700">রেজিস্ট্রেশন</a> -->
@@ -591,7 +591,7 @@
                     </div>
                 </div>
 
-                <a href="https://facebook.com/chayannito26" target="_blank" class="inline-flex items-center bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-full transition-transform transform hover:scale-105 shadow-lg">
+                <!-- <a href="https://facebook.com/chayannito26" target="_blank" class="inline-flex items-center bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-full transition-transform transform hover:scale-105 shadow-lg">
                     <i class="fab fa-facebook-f mr-3"></i> Facebook Page
                 </a>
                 <a href="https://instagram.com/chayannito26" target="_blank" class="inline-flex items-center bg-fuchsia-500 hover:bg-fuchsia-600 text-white font-bold py-3 px-8 rounded-full transition-transform transform hover:scale-105 shadow-lg mt-4 md:mt-0 md:ml-4">
@@ -599,7 +599,7 @@
                 </a>
                 <a href="https://shop.chayannito26.com" target="_blank" class="inline-flex items-center bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-8 rounded-full transition-transform transform hover:scale-105 shadow-lg mt-4 md:mt-0 md:ml-4">
                     <i class="fas fa-shopping-bag mr-3 text-white"></i> Merchandise Shop
-                </a>
+                </a> -->
             </div>
         </section>
 
@@ -618,7 +618,7 @@
             </div>
         </section>
 
-        <!-- Announcements Section -->
+        <!-- Announcements Section
         <section id="announcements" class="py-16 md:py-24 section-gradient">
             <div class="container mx-auto px-6">
                 <div class="text-center mb-12"><h2 class="text-3xl md:text-4xl font-bold text-slate-800">গুরুত্বপূর্ণ ঘোষণাসমূহ</h2><p class="text-slate-500 mt-2">সর্বশেষ আপডেট ও খবর</p><div class="w-24 h-1 bg-red-500 mx-auto mt-4"></div></div>
@@ -627,12 +627,12 @@
                     <div class="bg-white rounded-lg shadow-lg overflow-hidden group"><div class="video-container rounded-t-lg"><iframe src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2Freel%2F1401569058192109&width=560&show_text=true&height=315&appId" width="500" height="437" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe></div><div class="p-6"><h3 class="text-xl font-bold mb-2 text-slate-700">আমাদের একটি ব্যানার উন্মচনির জন্যে বানানো ভিডিও</h3><p class="text-slate-600 text-sm leading-relaxed">আমাদের অনুষ্ঠানের জন্যে তৈরি করা হয়েছে একটি বিশেষ ব্যানার। ভিডিওটির মাধ্যমে ব্যানার উন্মোচনের মুহূর্তটি আপনাদের সাথে ভাগ করে নিচ্ছি 🎉</p></div></div>
                     <div class="bg-white rounded-lg shadow-lg overflow-hidden group announcement-card"><div class="video-container rounded-t-lg"><iframe src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2Fchayannito26%2Fposts%2Fpfbid0ERewd5TKb9KREAEAA3GgevVSLnH9sGPj3fwPLjiFn1KCdZtCqErsbTimoHfiqg26l&show_text=false&width=560&height=315" width="560" height="315" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe></div><div class="p-6"><h3 class="text-xl font-bold mb-1 text-slate-700">⏰ রেজিস্ট্রেশনের শেষ সময়সূচী</h3><time datetime="2025-10-25" class="announcement-meta">শেষ ডেট: ২৫ অক্টোবর ২০২৫</time><p class="text-slate-600 text-sm leading-relaxed">রেজিস্ট্রেশন শেষ দিনের ঘোষণা। যারা এখনও রেজিস্ট্রেশন করেননি তারা দ্রুত রেজিস্ট্রেশন সম্পন্ন করুন—নির্ধারিত সময়ের পরে অংশগ্রহণ করা সম্ভব হবে না।</p></div></div>
                     <div class="bg-white rounded-lg shadow-lg overflow-hidden group"><div class="video-container rounded-t-lg"><iframe src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2Freel%2F791686873504173%2F%3Fs%3Dsingle_unit&width=560&show_text=true&height=315&appId" width="500" height="437" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe></div><div class="p-6"><h3 class="text-xl font-bold mb-2 text-slate-700">আমাদের একটি প্রোমো ভিডিও</h3><p class="text-slate-600 text-sm leading-relaxed">তৈরি করা হয়েছে একটি বিশেষ প্রোমো ভিডিও। ভিডিওটি দেখুন এবং বন্ধুদের সাথে শেয়ার করুন।</p></div></div>
-                    <!-- <div class="bg-white rounded-lg shadow-lg overflow-hidden group"><div class="video-container rounded-t-lg"><iframe width="560" height="315" src="https://www.youtube.com/embed/ZherEGM0Mww?si=1xR0DQa2FReZUNvP" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div><div class="p-6"><h3 class="text-xl font-bold mb-2 text-slate-700">আমাদের একটি প্রোমো ভিডিও</h3><p class="text-slate-600 text-sm leading-relaxed">তৈরি করা হয়েছে একটি বিশেষ প্রোমো ভিডিও। ভিডিওটি দেখুন এবং বন্ধুদের সাথে শেয়ার করুন।</p></div></div> -->
+                    <div class="bg-white rounded-lg shadow-lg overflow-hidden group"><div class="video-container rounded-t-lg"><iframe width="560" height="315" src="https://www.youtube.com/embed/ZherEGM0Mww?si=1xR0DQa2FReZUNvP" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div><div class="p-6"><h3 class="text-xl font-bold mb-2 text-slate-700">আমাদের একটি প্রোমো ভিডিও</h3><p class="text-slate-600 text-sm leading-relaxed">তৈরি করা হয়েছে একটি বিশেষ প্রোমো ভিডিও। ভিডিওটি দেখুন এবং বন্ধুদের সাথে শেয়ার করুন।</p></div></div>
                     <div class="bg-white rounded-lg shadow-lg overflow-hidden group announcement-card"><img src="./images/coupons.webp" alt="Registration open graphic" class="w-full h-56 object-cover group-hover:opacity-90 transition-opacity"><div class="p-6"><h3 class="text-xl font-bold mb-1 text-slate-700">✨রেজিস্ট্রেশন শুরু হয়েছে! ✨</h3><time datetime="2025-09-10" class="announcement-meta">ঘোষণা: ১০ সেপ্টেম্বর ২০২৫</time><p class="text-slate-600 text-sm leading-relaxed">ছায়ান্বিত ‘২৬ ব্যাচের বিদায় অনুষ্ঠানের রেজিস্ট্রেশন এখন চলছে। দ্রুত আপনার বিভাগের নির্ধারিত অর্থ সংগ্রাহকের সাথে যোগাযোগ করে রেজিস্ট্রেশন সম্পন্ন করুন❗</p></div></div>
-                    <!-- <div class="bg-white rounded-lg shadow-lg overflow-hidden group announcement-card"><img src="./images/recording.webp" alt="ভিডিও" class="w-full h-56 object-fit group-hover:opacity-90 transition-opacity"><div class="p-6"><h3 class="text-xl font-bold mb-1 text-slate-700">🎉 ব্যাচ ব্যানার ও ভিডিও শুট – ১৪ই সেপ্টেম্বর 🎥</h3><time datetime="2025-09-11" class="announcement-meta">ঘোষণা: ১১ সেপ্টেম্বর ২০২৫</time><p class="text-slate-600 text-sm leading-relaxed">ছায়ান্বিত ’২৬ ব্যাচের বিদায় অনুষ্ঠানের ব্যানার আগামী ১৪ই সেপ্টেম্বর, রবিবার কলেজ প্রাঙ্গণে টাঙানো হবে। সকাল ১০টায় কলেজ ড্রেস পরে সবাই উপস্থিত থাকুন। সিনেমাটোগ্রাফার দিয়ে ভিডিও ধারণ করা হবে এবং চাইলে সেদিনই রেজিস্ট্রেশনও করতে পারবেন। ✨</p></div></div> -->
+                    <div class="bg-white rounded-lg shadow-lg overflow-hidden group announcement-card"><img src="./images/recording.webp" alt="ভিডিও" class="w-full h-56 object-fit group-hover:opacity-90 transition-opacity"><div class="p-6"><h3 class="text-xl font-bold mb-1 text-slate-700">🎉 ব্যাচ ব্যানার ও ভিডিও শুট – ১৪ই সেপ্টেম্বর 🎥</h3><time datetime="2025-09-11" class="announcement-meta">ঘোষণা: ১১ সেপ্টেম্বর ২০২৫</time><p class="text-slate-600 text-sm leading-relaxed">ছায়ান্বিত ’২৬ ব্যাচের বিদায় অনুষ্ঠানের ব্যানার আগামী ১৪ই সেপ্টেম্বর, রবিবার কলেজ প্রাঙ্গণে টাঙানো হবে। সকাল ১০টায় কলেজ ড্রেস পরে সবাই উপস্থিত থাকুন। সিনেমাটোগ্রাফার দিয়ে ভিডিও ধারণ করা হবে এবং চাইলে সেদিনই রেজিস্ট্রেশনও করতে পারবেন। ✨</p></div></div>
                 </div>
             </div>
-        </section>
+        </section> -->
 
         <!-- Student Count Section with CounterUp2 -->
         <section id="student-count" class="py-16 md:py-20 bg-slate-800 text-white">
@@ -744,22 +744,22 @@
                         <div class="mb-8 pl-8 md:pl-10 relative">
                             <div class="absolute -left-4 top-1 w-7 h-7 bg-slate-800 rounded-full border-4 border-red-400"></div>
                             <p class="text-red-600 font-semibold">সন্ধ্যা ৭ টা</p>
-                            <h3 class="text-xl font-bold text-slate-700 mt-1">সেকেন্ডারি ব্যান্ড পারফরম্যান্স (Karnival)</h3>
-                            <p class="text-slate-500 mt-1">দ্বিতীয় ব্যান্ড Karnival এর পারফরম্যান্স।</p>
+                            <h3 class="text-xl font-bold text-slate-700 mt-1">সেকেন্ডারি ব্যান্ড পারফরম্যান্স</h3>
+                            <p class="text-slate-500 mt-1">দ্বিতীয় ব্যান্ড এর পারফরম্যান্স।</p>
                         </div>
 
                         <div class="pl-8 md:pl-10 relative">
                             <div class="absolute -left-4 top-1 w-7 h-7 bg-slate-800 rounded-full border-4 border-red-400"></div>
                             <p class="text-red-600 font-semibold">সন্ধ্যা ৮ টা</p>
-                            <h3 class="text-xl font-bold text-slate-700 mt-1">প্রধান ব্যান্ড পারফরম্যান্স (AvoidRafa)</h3>
-                            <p class="text-slate-500 mt-1">প্রধান ব্যান্ড AvoidRafa এর আকর্ষণীয় কনসার্ট দিয়ে অনুষ্ঠান সমাপ্ত হবে।</p>
+                            <h3 class="text-xl font-bold text-slate-700 mt-1">প্রধান ব্যান্ড পারফরম্যান্স</h3>
+                            <p class="text-slate-500 mt-1">প্রধান ব্যান্ড এর আকর্ষণীয় কনসার্ট দিয়ে অনুষ্ঠান সমাপ্ত হবে।</p>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Band Lineup Section -->
+        <!-- Band Lineup Section
         <section id="band-lineup" class="py-16 md:py-24 section-gradient">
             <div class="container mx-auto px-6">
                 <div class="text-center mb-12">
@@ -812,7 +812,7 @@
                     </article>
                 </div>
             </div>
-        </section>
+        </section> -->
 
         <!-- Photo Gallery Section -->
         <section id="gallery" class="py-16 md:py-24 bg-white">
@@ -881,7 +881,7 @@
                                 <i :class="{'rotate-180': selected === 1, 'rotate-0': selected !== 1}" class="fas fa-chevron-down transition-transform duration-300"></i>
                             </button>
                             <div x-show="selected === 1" x-collapse x-transition class="p-5 pt-0 text-slate-600">
-                                <p>প্রত্যেক শিক্ষার্থীর জন্য রেজিস্ট্রেশন ফি ১২০০ টাকা নির্ধারণ করা হয়েছে। এর মধ্যে গিফট, টি-শার্ট, খাবার এবং কনসার্ট, স্টেজ ও লাইটিংসহ অন্যান্য খরচ অন্তর্ভুক্ত।</p>
+                                <p>প্রত্যেক শিক্ষার্থীর জন্য রেজিস্ট্রেশন ফি ২০০০ টাকা নির্ধারণ করা হয়েছে। এর মধ্যে গিফট, টি-শার্ট, খাবার এবং কনসার্ট, স্টেজ ও লাইটিংসহ অন্যান্য খরচ অন্তর্ভুক্ত।</p>
                             </div>
                         </div>
 
@@ -891,7 +891,7 @@
                                 <i :class="{'rotate-180': selected === 11, 'rotate-0': selected !== 11}" class="fas fa-chevron-down transition-transform duration-300"></i>
                             </button>
                             <div x-show="selected === 11" x-collapse x-transition class="p-5 pt-0 text-slate-600">
-                                <p>বিদায় অনুষ্ঠান ২ ডিসেম্বর ২০২৫ তারিখে কলেজ প্রাঙ্গণে অনুষ্ঠিত হবে।</p>
+                                <p>বিদায় অনুষ্ঠান ২৪ মার্চ ২০২৬ তারিখে কলেজ প্রাঙ্গণে অনুষ্ঠিত হবে।</p>
                             </div>
                         </div>
 
@@ -901,7 +901,7 @@
                                 <i :class="{'rotate-180': selected === 2, 'rotate-0': selected !== 2}" class="fas fa-chevron-down transition-transform duration-300"></i>
                             </button>
                             <div x-show="selected === 2" x-collapse x-transition class="p-5 pt-0 text-slate-600">
-                                <p>টাকা জমা দেওয়ার শেষ তারিখ ১০ নভেম্বর ২০২৫ খ্রিঃ। আপনার নিজ নিজ বিভাগের অর্থ সংগ্রাহকের কাছে শীঘ্রই টাকা জমা দিন।</p>
+                                <p>টাকা জমা দেওয়ার শেষ তারিখ ১০ মার্চ ২০২৬ খ্রিঃ। আপনার নিজ নিজ বিভাগের অর্থ সংগ্রাহকের কাছে শীঘ্রই টাকা জমা দিন।</p>
                             </div>
                         </div>
 
@@ -915,7 +915,7 @@
                             </div>
                         </div>
 
-                            <div class="rounded-lg border border-slate-200">
+                            <!-- <div class="rounded-lg border border-slate-200">
                                 <button @click="selected = selected === 10 ? null : 10" class="w-full flex justify-between items-center text-left text-lg font-semibold p-5">
                                     <span class="text-slate-800">কোন ব্যান্ড আনা হবে?</span>
                                     <i :class="{'rotate-180': selected === 10, 'rotate-0': selected !== 10}" class="fas fa-chevron-down transition-transform duration-300"></i>
@@ -923,7 +923,7 @@
                                 <div x-show="selected === 10" x-collapse x-transition class="p-5 pt-0 text-slate-600">
                                     <p>এই বছরে AvoidRafa ও Karnival মূল আকর্ষণ হিসেবে মঞ্চ কাঁপাবে, তাদের সাথে Dark Slayer ও বিদায় অনুষ্ঠানের সন্ধ্যাকালীন কনসার্টে পারফর্ম করবে।</p>
                                 </div>
-                            </div>
+                            </div> -->
 
                         <div class="rounded-lg border border-slate-200">
                             <button @click="selected = selected === 4 ? null : 4" class="w-full flex justify-between items-center text-left text-lg font-semibold p-5">
@@ -993,8 +993,8 @@
                  <h2 class="text-3xl md:text-4xl font-bold">যোগাযোগ</h2>
                  <p class="text-slate-300 mt-2 mb-8">যেকোনো তথ্যের জন্য আমাদের সাথে যোগাযোগ করুন</p>
                  <div class="flex flex-col md:flex-row justify-center items-center gap-6">
-                    <a href="https://m.me/chayannito26" target="_blank" class="inline-flex items-center bg-blue-600 hover:bg-blue-700 font-bold py-3 px-8 rounded-full transition-transform transform hover:scale-105 shadow-lg"><i class="fab fa-facebook-messenger mr-3"></i> মেসেঞ্জারে মেসেজ দিন</a>
-                    <a id="instagram-message-link" href="https://www.instagram.com/m/chayannito26" target="_blank" class="inline-flex items-center bg-fuchsia-600 hover:bg-fuchsia-700 font-bold py-3 px-8 rounded-full transition-transform transform hover:scale-105 shadow-lg"><i class="fab fa-instagram mr-3"></i> ইনস্টাগ্রামে মেসেজ দিন</a>
+                    <!-- <a href="https://m.me/chayannito26" target="_blank" class="inline-flex items-center bg-blue-600 hover:bg-blue-700 font-bold py-3 px-8 rounded-full transition-transform transform hover:scale-105 shadow-lg"><i class="fab fa-facebook-messenger mr-3"></i> মেসেঞ্জারে মেসেজ দিন</a>
+                    <a id="instagram-message-link" href="https://www.instagram.com/m/chayannito26" target="_blank" class="inline-flex items-center bg-fuchsia-600 hover:bg-fuchsia-700 font-bold py-3 px-8 rounded-full transition-transform transform hover:scale-105 shadow-lg"><i class="fab fa-instagram mr-3"></i> ইনস্টাগ্রামে মেসেজ দিন</a> -->
                     <a href="mailto:chayannito26@gmail.com" class="inline-flex items-center bg-amber-600 hover:bg-amber-700 font-bold py-3 px-8 rounded-full transition-transform transform hover:scale-105 shadow-lg"><i class="fas fa-envelope mr-3"></i> ই-মেইল করুন</a>
                  </div>
 
@@ -1030,7 +1030,7 @@
         <div class="container mx-auto px-6 text-center">
             <p class="font-semibold text-lg mb-2 text-white">ছায়ান্বিত ’২৬</p>
             <p class="text-sm">শহীদ বুলবুল সরকারি কলেজ, পাবনা | এইচএসসি ২০২৬ ব্যাচ</p>
-            <div><p class="text-xs">&copy; ২০২৫ | সকল স্বত্ব সংরক্ষিত</p></div>
+            <div><p class="text-xs">&copy; ২০২৬ | সকল স্বত্ব সংরক্ষিত</p></div>
             <div class="mt-4">
                 <p class="text-xs text-slate-500" aria-label="site credit">Website designed by <a href="https://www.facebook.com/wasimaster/" target="_blank" class="font-medium text-slate-300">Arian Mollik Wasi</a></p>
             </div>
